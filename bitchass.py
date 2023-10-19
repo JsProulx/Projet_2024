@@ -1,1 +1,0 @@
-print("osti fonctionne criss")
