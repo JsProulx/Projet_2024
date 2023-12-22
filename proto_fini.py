@@ -4,6 +4,12 @@ from tkinter import *
 import time
 
 mc = MyCobot('/dev/ttyAMA0',1000000)
+mc.set_gripper_ini()
+
+def on_button1_click():
+    mc.set_gripper_state(1,50)
+def on_button2_click():
+    mc.set_gripper_state(0, 50)
 
 def update_scale_value(scale_index):
     # Update scale value based on corresponding entry value
@@ -24,11 +30,12 @@ def Fermeture_interface_de_gestion():
     mc.send_angle(2,-135.0,15)
     mc.send_angle(3,155,15)
     mc.send_angle(4,-150.0,15)
-    mc.send_angle(5,-90.0,15)
+    mc.send_angle(5,85.0,15)
     mc.send_angle(6,0,15)
 
     time.sleep(10)
 
+    mc.set_gripper_state(0, 50)
     mc.release_all_servos()
 
 for i in range (6):
@@ -43,7 +50,7 @@ scales = []
 scale_entries = []
 #images = ["/home/ubuntu/Desktop/Projet_Finale_Jean-Seb et philippe/joint1.png","/home/ubuntu/Desktop/Projet_Finale_Jean-Seb et philippe/joint2.png","/home/ubuntu/Desktop/Projet_Finale_Jean-Seb et philippe/joint3.png","/home/ubuntu/Desktop/Projet_Finale_Jean-Seb et philippe/joint4.png","/home/ubuntu/Desktop/Projet_Finale_Jean-Seb et philippe/joint5.png","/home/ubuntu/Desktop/Projet_Finale_Jean-Seb et philippe/joint6.png"]
 
-for i in range(6):  # Create 6 scales and corresponding entry fields
+for i in range(8):  # Create 6 scales and corresponding entry fields
     #on load les images
     """img = Image.open(images[i])
     img = img.resize((50,50))
@@ -78,6 +85,11 @@ for i in range(6):  # Create 6 scales and corresponding entry fields
     entry.bind("<Return>", lambda event, x=i: update_scale_value(x))
     # Binding scale movement to update entry value
     scale.bind("<ButtonRelease-1>", lambda event, x=i: update_entry_value(x))
+
+bouton1 = tk.Button(root, text="Pince grip", command=on_button1_click)
+bouton2 = tk.Button(root, text="Pince gripn't", command=on_button2_click)
+bouton1.pack()
+bouton2.pack()
 
 root.mainloop()
 
