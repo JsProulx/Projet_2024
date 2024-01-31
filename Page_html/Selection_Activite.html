@@ -1,0 +1,69 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<head>
+    <title>Activity Selection</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+        
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1em;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select an Activity</h1>
+        
+        <button id="activity1">Machine à bonbons</button>
+        <button id="activity2">Suis la main</button>
+        <button id="activity3">Tic Tac To</button>
+    </div>
+    
+    <script>
+        // Add event listeners to the buttons
+        document.getElementById("activity1").addEventListener("click", function() {
+            // Redirect to Activity 1 page
+            window.location.href = "Machine_a_bonbons.html";
+        });
+        // Event listener pour le bouton 2
+        document.getElementById("activity2").addEventListener("click", function() {
+            // Redirect to Activity 2 page
+            window.location.href = "Suis_la_main.html";
+        });
+        // Event listener pour le bouton 3
+        document.getElementById("activity3").addEventListener("click", function() {
+            // Redirect to Activity 3 page
+            window.location.href = "Tic_Tac_Toe.html";
+        });
+    </script>
+</body>
+</html>
