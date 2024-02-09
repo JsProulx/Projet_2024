@@ -1,0 +1,42 @@
+import cv2
+import mediapipe as mp
+
+mp_hands = mp.solutions.hands
+
+# Initialiser le détecteur de main
+hands = mp_hands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5)
+
+# Lancer la capture vidéo
+cap = cv2.VideoCapture(0)
+
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        print("Erreur lors de la lecture de la vidéo.")
+        break
+
+    # Convertir l'image en RGB
+    image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    # Effectuer la détection de la main
+    results = hands.process(image_rgb)
+
+    if results.multi_hand_landmarks:
+        for hand_landmarks in results.multi_hand_landmarks:
+            # Extraire les coordonnées du point au centre de la paume (landmark 9 pour la main droite, 10 pour la main gauche)
+            center_x = int(hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].x * frame.shape[1])
+            center_y = int(hand_landmarks.landmark[mp_hands.HandLandmark.WRIST].y * frame.shape[0])
+
+            # Dessiner un cercle au centre de la paume
+            cv2.circle(frame, (center_x, center_y), 10, (0, 255, 0), -1)
+
+    # Afficher le cadre vidéo
+    cv2.imshow('MediaPipe Hand Tracking', frame)
+
+    # Quitter la boucle si la touche 'q' est enfoncée
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# Libérer les ressources
+cap.release()
+cv2.destroyAllWindows()
