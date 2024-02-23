@@ -43,7 +43,7 @@ class detectMain():
         
         return img, paume_position
     # Convertit la position de la paume en position de grille
-    def mapToGrid(self, img, paume_position):
+    """def mapToGrid(self, img, paume_position):
         grid_position = None
 
         if paume_position:  
@@ -57,7 +57,9 @@ class detectMain():
             
             grid_position = (row, col)
         
-        return grid_position
+        return grid_position"""
+    
+
 def main():
     pTime = 0
     cTime = 0
@@ -81,25 +83,28 @@ def main():
 
     # Redimensionner l'image avec le nouveau ratio
     image_with_text_resized = cv2.resize(image_with_text, (largeurPhoto, nouvelle_hauteur))
-
+   
     while True:
         success, img = cap.read()
-        img = cv2.resize(img, (display_width, display_height))  # Redimensionner l'image
-        img, main_points = detector.trouvePointsMain(img)
-        img, paume_position = detector.trouvePositionPaume(img, main_points)
+        flipped_img = cv2.flip(img, 1)  # Retourner l'image horizontalement
+        flipped_img = cv2.resize(flipped_img, (display_width, display_height))  # Redimensionner l'image
+        flipped_img, main_points = detector.trouvePointsMain(flipped_img)
+        flipped_img, paume_position = detector.trouvePositionPaume(flipped_img, main_points)
         
-         # Calculer les coordonnées de début pour centrer l'image importée dans l'image vidéo
+        # Calculer les coordonnées de début pour centrer l'image importée dans l'image vidéo
         debut_x = (display_width - largeurPhoto) // 2
         debut_y = display_height - nouvelle_hauteur
 
         # Insérer l'image importée redimensionnée dans le bas de l'image vidéo
-        img[debut_y:debut_y + nouvelle_hauteur, debut_x:debut_x + largeurPhoto] = image_with_text_resized
+        flipped_img[debut_y:debut_y + nouvelle_hauteur, debut_x:debut_x + largeurPhoto] = image_with_text_resized
 
         if paume_position:
             # Convertir les coordonnées en texte
             text = f"Position de la main: {paume_position[0]}, {paume_position[1]}"
             # Dessiner le texte sur l'image
-            cv2.putText(img, text, (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+            cv2.putText(flipped_img, text, (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+            stringEnvoi = str(paume_position[0]) + "," + str(paume_position[1])
+            print(stringEnvoi)
 
 
         #pour le calcul du fps
@@ -107,9 +112,9 @@ def main():
         fps = 1 / (cTime - pTime)
         pTime = cTime
 
-        cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
+        cv2.putText(flipped_img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
 
-        cv2.imshow("Image", img)
+        cv2.imshow("Image", flipped_img)
         cv2.waitKey(1)  #changer si on veut changer la vitesse de la vidéo
         # Vérifier si la touche 'q' est enfoncée ou si la fenêtre est fermée
         if cv2.waitKey(1) & 0xFF == ord('q') or cv2.getWindowProperty("Image", cv2.WND_PROP_VISIBLE) < 1:
@@ -120,21 +125,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-"""#on dessine un encadré blanc pour une zone texte informative dans le bas de l'image
-        textInfo = "Attention! Vous êtes filmé!\nProjet de robot suiveur dans le présentoir TGE\nProjet en cours de développement"
-        lines = textInfo.split('\n')
-        line_height = 30  # Hauteur de chaque ligne de texte
-        text_rect_height = len(lines) * line_height  # Hauteur totale du texte
-        rect_top = display_height - 50 - text_rect_height  # Position verticale du haut du rectangle
-
-        # Dessiner un encadré blanc pour la zone de texte
-        cv2.rectangle(img, (0, rect_top), (display_width, display_height), (255, 255, 255), -1)
-
-        # Dessiner le texte dans le rectangle
-        for i, line in enumerate(lines):
-            y = display_height - 10 - text_rect_height + (i * line_height)
-            cv2.putText(img, line, (10, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)"""
-        
-
