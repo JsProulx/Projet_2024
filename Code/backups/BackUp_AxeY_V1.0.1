@@ -1,0 +1,119 @@
+from pymycobot.mycobot import MyCobot
+import time
+import random
+
+#test sur le plan x,y, l'angle du tool est de 0,0,0
+mc = MyCobot('/dev/ttyAMA0',1000000)
+
+
+#Constante de la valeure de X, X indique la distance entre la base du robot et le bout
+Distance_preset_X = 140   
+
+
+#Valeure par defaut des angle de la "tete" du robot
+#rx_1 = -81
+#ry_1 = 53
+#rz_1 = -85
+#rx_2 = -91
+#ry_2 = 53
+#rz_2 = -89
+rx = -81
+ry = 53
+rz = -85
+#Valeure par defaut vitesse
+vitesse = 90
+#Constante pour les types de mouvements
+Angulaire = 0
+lineaire = 1
+
+
+#Constantes des limites de la plage
+min_Z = 185
+max_Z =330
+min_Y = -140
+max_Y = 140
+
+#############################################
+#   Variables concernants les mouvements
+
+
+#Constantes pour définir les dimensions de l'acquisition
+dim_Y = 500
+dim_Z = 500
+#Calcul du ration mm/pixels
+mmpix_Y = 280/dim_Y
+mmpix_Z = 145/dim_Z
+#Variables du nombre de pixel par mouvement 
+
+
+
+
+#Variable de reception de la position de la main
+
+
+#test sur le plan de y,z l'angle du tool est de -81,53,-85 (approximatif, mesure prise avec myBlockly)
+#le code ci dessous deplace le robot aux coordonnees desires, l'axe des X a une valeure constant et le robot se deplace
+#dans l'espace a l'aide des axe Y et Z (si on met ces angles dans un plan cartesien standard, (Y,Z) = (X,Y)).
+while True:
+
+    #Boucle for pour que le robot passe de son -y a y avec une vitesse particuliere. 
+    #Il faut ajuster l'ampleur des mouvements en fonction du temps afin que les mouvements soient fluide
+    for i in range(0,50):  #Le range sert a definir le nombre de revolution pour les tests
+        #temp_Y = random.randint(0,500) 
+        dep_Y = mmpix_Y*(i*10)  #Indique que l'on veut un deplacement de 0.58mm * (chaque revolution * "Le nombre de fois qu'il faut multiplier le maximum du range pour arriver a 500"
+        dep_Y = dep_Y - 140 #La soustraction de 145 sert a changer le range de valeure de (0/290) pour un range de (-145/145) conformement a nos limites de mouvements
+
+        if dep_Y >= 0:  #Si la valeure de deplacement sur l'axe des Y est positive: 
+            if dep_Y < 12 and dep_Y != 0:    #Si la valeure de deplacement est plus petite que 6 et qu'elle n'est pas de 0 :
+                rx = rx-2.5 #Diminue la valeure de rx de -2.5
+                rz = rz-1   #Diminue la valeure de rz de -1
+                mc.send_coords([Distance_preset_X,dep_Y,max_Z,rx,ry,rz],vitesse,Angulaire)   #Déplace toi aux cordonnees suivantes
+            else :  #Sinon: 
+                mc.send_coords([Distance_preset_X,dep_Y,max_Z,rx,ry,rz],vitesse,Angulaire)   #Déplace toi aux cordonnees suivantes
+        elif dep_Y < 0: #sinon si la valeure de dep_Y est negative
+            if dep_Y > -12 and dep_Y != 0:   #si la valeure de dep_Y est plus grande que -6 et n'es pas 0:
+                rx = rx-2.5 #Diminue la valeure de rx de -2.5
+                rz = rz-1   #Diminue la valeure de rz de -1
+                mc.send_coords([Distance_preset_X,dep_Y,max_Z,rx,ry,rz],vitesse,Angulaire)   #Deplace toi aux cordonnees suivantes
+            else :  #Sinon: 
+                mc.send_coords([Distance_preset_X,dep_Y,max_Z,rx,ry,rz],vitesse,Angulaire)   #Deplace toi aux cordonnees suivantes
+        print(dep_Y)    #Print la valeure de dep_Y pour pouvoir suivre les tests
+        print("\n""\r",rx,",",ry,",",rz,"\n""\r")
+        time.sleep(0.00001) #Sleep pour 10 micro secondes
+    
+    for i in reversed(range(0,50)):    #Même chose que dans la for précédente mais on passe de Y au -Y
+        #temp_Y = random.randint(0,500) 
+        dep_Y = mmpix_Y*(i*10)
+        dep_Y = dep_Y - 140
+
+        if dep_Y >= 0:
+            if dep_Y < 12 and dep_Y != 0:
+                rx = rx+2.5
+                rz = rz+1
+                mc.send_coords([Distance_preset_X,dep_Y,max_Z,rx,ry,rz],vitesse,Angulaire)
+            else :
+                mc.send_coords([Distance_preset_X,dep_Y,max_Z,rx,ry,rz],vitesse,Angulaire)
+        elif dep_Y < 0:
+            if dep_Y > -12 and dep_Y != 0:
+                rx = rx+2.5
+                rz = rz+1
+                mc.send_coords([Distance_preset_X,dep_Y,max_Z,rx,ry,rz],vitesse,Angulaire)
+            else:
+                mc.send_coords([Distance_preset_X,dep_Y,max_Z,rx,ry,rz],vitesse,Angulaire)
+        print(dep_Y)
+        print("\n""\r",rx,",",ry,",",rz,"\n""\r")
+        time.sleep(0.00001)
+    
+"""
+mc.send_coords([Distance_preset_X,min_Y,min_Z,rx_1,ry_1,rz_1],vitesse,Angulaire)
+time.sleep(5)
+mc.send_coords([Distance_preset_X,min_Y,max_Z,rx_1,ry_1,rz_1],vitesse,Angulaire)
+time.sleep(5)
+mc.send_coords([Distance_preset_X,max_Y,max_Z,rx_2,ry_2,rz_2],vitesse,Angulaire)
+time.sleep(5)
+mc.send_coords([Distance_preset_X,max_Y,min_Z,rx_2,ry_2,rz_2],vitesse,Angulaire)
+time.sleep(5)
+mc.send_coords([Distance_preset_X,min_Y,min_Z,rx_1,ry_1,rz_1],vitesse,Angulaire)
+time.sleep(5)
+mc.release_all_servos() #Libère les servos moteurs afin de protéger le robot si l'on excede ses limites
+"""
