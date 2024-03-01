@@ -46,9 +46,13 @@ Jetson nano est un petit ordinateur fait pour supporter de l'intelligence artifi
 - Installer OpenCV
     1 - sudo apt install python3-opencv
 - Installer MediaPipe
-    1 - 
+    1 - git clone https://github.com/google/mediapipe.git
+    2 - cd mediapipe
+    3 - python3 -m pip install .
+
 - Installer Serial
-    1 - 
+    1 - sudo pip3 install serial
+    2 - sudo pip3 install pyserial
 
 La communication série du Jetson est sur la pin UartRX sur le port: /dev/ttyS0
 
