@@ -1,3 +1,15 @@
+"""
+Auteur: Philippe Ramalho et Jean-Sebastien Proulx
+Hiver 2024
+Ce programme permet de détecter une main dans une vidéo et de trouver la position de 
+la paume de la main ainsi que la distance entre l'index et le pouce. On utilise la librairie
+MediaPipe pour la détection de la main. On utilise aussi la librairie OpenCV pour l'affichage de la
+capture vidéo et le traitement des images. On utilise aussi la librairie serial pour la communication
+série avec le raspi4 dans le bras robot. J'ai fait une classe detectMain pour faciliter la gestion
+de la détection de la main. On peut utiliser cette classe pour d'autres versions du programme.
+
+Les informations de positions de la main sont envoyées par communication série au bras robot.
+"""
 import cv2
 import mediapipe as mp
 import time
@@ -73,25 +85,11 @@ def main():
     detector = detectMain()
 
     # Définir la taille de l'image à afficher
+    #cette section est importante car le calcul de la position de la
+    #tete du robot depend de la taille de l'image. Ce calcul est fait par le bras robot.
     display_width = 852  # Largeur de l'écran souhaitée
     display_height = 480  # Hauteur de l'écran souhaitée
 
-    #section pour importer une image
-    """
-    #on importe le png 
-    # Charger l'image avec l'encadré et le texte
-    image_path = "texte.png"  # Remplacez "votre_image.jpg" par le chemin de votre image
-    image_with_text = cv2.imread(image_path)
-
-    largeurPhoto = 550
-
-    #calcul pour garder le ration
-    ratio = largeurPhoto / image_with_text.shape[1]
-    nouvelle_hauteur = int(image_with_text.shape[0] * ratio)
-
-    # Redimensionner l'image avec le nouveau ratio
-    image_with_text_resized = cv2.resize(image_with_text, (largeurPhoto, nouvelle_hauteur))
-    """
    
     while True:
         success, img_noflip = cap.read()
@@ -100,16 +98,6 @@ def main():
         img, main_points = detector.trouvePointsMain(img)       # Trouver les points de la main sur img, retourne la nouvelle image avec les points de la main
         img, paume_position = detector.trouvePositionPaume(img, main_points) # Trouver la position de la paume de la main sur img, retourne la nouvelle image avec un point sur la paume
 
-        #serction pour mettre l'image dans la vidéo
-        
-        """
-        # Calculer les coordonnées de début pour centrer l'image importée dans l'image vidéo
-        debut_x = (display_width - largeurPhoto) // 2
-        debut_y = display_height - nouvelle_hauteur
-
-        # Insérer l'image importée redimensionnée dans le bas de l'image vidéo
-        img[debut_y:debut_y + nouvelle_hauteur, debut_x:debut_x + largeurPhoto] = image_with_text_resized
-        """
         #si on detecte une main
         if paume_position:
             # Calculer la distance entre l'index et le pouce
