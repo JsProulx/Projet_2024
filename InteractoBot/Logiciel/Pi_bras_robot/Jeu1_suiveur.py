@@ -1,3 +1,14 @@
+"""
+Auteur: Philippe Ramalho et Jean-Sebastien Proulx
+Hiver 2024
+Ce programme prend les données reçues par communication série du programme suiveur_presentoir_VX.py
+et les utilise pour contrôler le bras robot. On utilise la librairie pymycobot pour contrôler le bras
+robot. Il a deux processus en parallèle, un pour lire les données reçues par communication série et
+l'autre pour contrôler le bras robot. On utilise la librairie multiprocessing pour gérer les processus.
+Le port serie ttyAMA0 est utilisé pour la communication série avec le bras robot. Le port série ttyUSB0
+est utilisé pour la communication série avec le programme suiveur_presentoir_VX.py.
+
+"""
 from pymycobot.mycobot import MyCobot
 import time
 import serial

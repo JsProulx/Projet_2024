@@ -3,9 +3,6 @@ import mediapipe as mp
 import time
 from mediapipe.tasks.python import vision
 from mediapipe.tasks import python
-import serial
-
-#port_serie = serial.Serial('/dev/ttyS0', 9600)  # Initialisation de la communication série
 
 class detectMain():
     #Initialisation de la classe
@@ -22,7 +19,7 @@ class detectMain():
     #Cette méthode prend une image en entrée et retourne l'image avec les points des mains détectées dessinés dessus   
     def trouvePointsMain(self, img, draw=True):
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) # Convertit l'image en RGB
-        self.results = self.hands.process(imgRGB)   
+        self.results = self.hands.process(imgRGB)
 
         point_main = None
         if self.results.multi_hand_landmarks:
@@ -79,8 +76,8 @@ def main():
         success, img_noflip = cap.read()
         img = cv2.flip(img_noflip, 1)  # Retourner l'image horizontalement
         img = cv2.resize(img, (display_width, display_height))  # Redimensionner l'image
-        img, main_points = detector.trouvePointsMain(img)       # Trouver les points de la main sur img, retourne la nouvelle image avec les points de la main
-        img, paume_position = detector.trouvePositionPaume(img, main_points) # Trouver la position de la paume de la main sur img, retourne la nouvelle image avec un point sur la paume
+        img, main_points = detector.trouvePointsMain(img)
+        img, paume_position = detector.trouvePositionPaume(img, main_points)
 
         #serction pour mettre l'image dans la vidéo
         
@@ -92,14 +89,13 @@ def main():
         # Insérer l'image importée redimensionnée dans le bas de l'image vidéo
         img[debut_y:debut_y + nouvelle_hauteur, debut_x:debut_x + largeurPhoto] = image_with_text_resized
         """
-        #si on detecte une main
         if paume_position:
-            Z_converti = 480-paume_position[1]  # Convertir la position de la paume en coordonnées cartésiennes
-            text = f"Position de la main: {paume_position[0]}, {Z_converti}" # Convertir les coordonnées en texte
-            cv2.putText(img, text, (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA) # Dessiner le texte sur l'image
-            stringEnvoi = str(paume_position[0]) + "," + str(Z_converti)+ "1" + "\n"  # Créer une chaîne de caractères pour envoyer les coordonnées de la paume
-            #port_serie.write(stringEnvoi.encode())    
-            
+            Z_converti = 480-paume_position[1]
+            # Convertir les coordonnées en texte
+            text = f"Position de la main: {paume_position[0]}, {Z_converti}"
+            # Dessiner le texte sur l'image
+            cv2.putText(img, text, (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+            stringEnvoi = str(paume_position[0]) + "," + str(Z_converti)+ "1"
             print(stringEnvoi)
 
 
@@ -110,9 +106,8 @@ def main():
 
         cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
 
-        cv2.imshow("Image", img)        # Afficher l'image
+        cv2.imshow("Image", img)
         cv2.waitKey(1)  #changer si on veut changer la vitesse de la vidéo
-
         # Vérifier si la touche 'q' est enfoncée ou si la fenêtre est fermée
         if cv2.waitKey(1) & 0xFF == ord('q') or cv2.getWindowProperty("Image", cv2.WND_PROP_VISIBLE) < 1:
             break

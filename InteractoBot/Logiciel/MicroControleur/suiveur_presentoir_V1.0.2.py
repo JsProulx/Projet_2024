@@ -1,3 +1,15 @@
+"""
+Auteur: Philippe Ramalho et Jean-Sebastien Proulx
+Hiver 2024
+Ce programme permet de détecter une main dans une vidéo et de trouver la position de 
+la paume de la main ainsi que la distance entre l'index et le pouce. On utilise la librairie
+MediaPipe pour la détection de la main. On utilise aussi la librairie OpenCV pour l'affichage de la
+capture vidéo et le traitement des images. On utilise aussi la librairie serial pour la communication
+série avec le raspi4 dans le bras robot. J'ai fait une classe detectMain pour faciliter la gestion
+de la détection de la main. On peut utiliser cette classe pour d'autres versions du programme.
+
+Les informations de positions de la main sont envoyées par communication série au bras robot.
+"""
 import cv2
 import mediapipe as mp
 import time
@@ -47,6 +59,24 @@ class detectMain():
             cv2.circle(img, paume_position, 10, (255, 0, 255), cv2.FILLED)
         
         return img, paume_position
+    #Cette methode prend une image et les points de la main en entree et calcul la distance enntre l'index et le pouce
+    #retourne 1 si la distance est inferieur a 50 sinon 0
+    def distanceIndexPouce(self, img, point_main):
+        distance = 0
+        if point_main:
+            #Extrait la position de la paume de la main
+            index_landmark = point_main.landmark[self.mpHands.HandLandmark.INDEX_FINGER_TIP]    #objet de position de l'index. A 2 propriétés x et y
+            pouce_landmark = point_main.landmark[self.mpHands.HandLandmark.THUMB_TIP]   # objet de position du pouce. A 2 propriétés x et y
+            img_hauteur, img_largeur, _ = img.shape                     # Récupère la hauteur et la largeur de l'image
+            index_position = (int(index_landmark.x * img_largeur), int(index_landmark.y * img_hauteur))     # Position de l'index en par rapport à l'image
+            pouce_position = (int(pouce_landmark.x * img_largeur), int(pouce_landmark.y * img_hauteur))      # Position du pouce en par rapport à l'image
+            distance = int(((index_position[0] - pouce_position[0])**2 + (index_position[1] - pouce_position[1])**2)**0.5)  # Calcul (en pixel) de la distance entre l'index et le pouce avec pythagore: racine carrée de (x2-x1)² + (y2-y1)²
+            #cv2.line(img, index_position, pouce_position, (255, 0, 255), 2)  # Dessine une ligne entre l'index et le pouce
+            if distance < 90:
+                return 1 , distance
+        
+        return 0, distance
+
 
 def main():
     pTime = 0
@@ -55,25 +85,11 @@ def main():
     detector = detectMain()
 
     # Définir la taille de l'image à afficher
+    #cette section est importante car le calcul de la position de la
+    #tete du robot depend de la taille de l'image. Ce calcul est fait par le bras robot.
     display_width = 852  # Largeur de l'écran souhaitée
     display_height = 480  # Hauteur de l'écran souhaitée
 
-    #section pour importer une image
-    """
-    #on importe le png 
-    # Charger l'image avec l'encadré et le texte
-    image_path = "texte.png"  # Remplacez "votre_image.jpg" par le chemin de votre image
-    image_with_text = cv2.imread(image_path)
-
-    largeurPhoto = 550
-
-    #calcul pour garder le ration
-    ratio = largeurPhoto / image_with_text.shape[1]
-    nouvelle_hauteur = int(image_with_text.shape[0] * ratio)
-
-    # Redimensionner l'image avec le nouveau ratio
-    image_with_text_resized = cv2.resize(image_with_text, (largeurPhoto, nouvelle_hauteur))
-    """
    
     while True:
         success, img_noflip = cap.read()
@@ -82,22 +98,15 @@ def main():
         img, main_points = detector.trouvePointsMain(img)       # Trouver les points de la main sur img, retourne la nouvelle image avec les points de la main
         img, paume_position = detector.trouvePositionPaume(img, main_points) # Trouver la position de la paume de la main sur img, retourne la nouvelle image avec un point sur la paume
 
-        #serction pour mettre l'image dans la vidéo
-        
-        """
-        # Calculer les coordonnées de début pour centrer l'image importée dans l'image vidéo
-        debut_x = (display_width - largeurPhoto) // 2
-        debut_y = display_height - nouvelle_hauteur
-
-        # Insérer l'image importée redimensionnée dans le bas de l'image vidéo
-        img[debut_y:debut_y + nouvelle_hauteur, debut_x:debut_x + largeurPhoto] = image_with_text_resized
-        """
         #si on detecte une main
         if paume_position:
+            # Calculer la distance entre l'index et le pouce
+            distance = detector.distanceIndexPouce(img, main_points)
+
             Z_converti = 480-paume_position[1]  # Convertir la position de la paume en coordonnées cartésiennes
-            text = f"Position de la main: {paume_position[0]}, {Z_converti}" # Convertir les coordonnées en texte
-            cv2.putText(img, text, (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA) # Dessiner le texte sur l'image
-            stringEnvoi = str(paume_position[0]) + "," + str(Z_converti)+ "1" + "\n"  # Créer une chaîne de caractères pour envoyer les coordonnées de la paume
+            text = f"Position de la main: {paume_position[0]}, {Z_converti}, Disance index/pouce : {distance[1]}" # Convertir les coordonnées en texte
+            cv2.putText(img, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2, cv2.LINE_AA) # Dessiner le texte sur l'image
+            stringEnvoi = str(paume_position[0]) + "," + str(Z_converti)+","+ str(distance[0]) + "\n"  # Créer une chaîne de caractères pour envoyer les coordonnées de la paume
             #port_serie.write(stringEnvoi.encode())    
             
             print(stringEnvoi)

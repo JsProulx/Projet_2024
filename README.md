@@ -1,16 +1,22 @@
 *------------------------------------------------*
-*--- À lire pour l'utilisation du bras robot ----*
-*------------------------------------------------*
 
+*--- À lire pour l'utilisation du bras robot ----*
+
+*------------------------------------------------*
+Ce projet est conçu pour le Département de Technique de Génie Électrique du Cégep de Sherbrooke. On utilise un bras robot 6 axes d'Elephant Robotics. 
+Le bras robot a un RasberryPI 4 d'intégré. Ce Pi4 contient les scripts python pour gérer le mouvement des servos moteurs du bras robot. Pour interfacer la manette et 
+le module de vision par odinateur, nous utilisons un JetSon Nano de Nvidia. Ce microcontroleur traite les données nécessaires et envoie les informations au Pi4 via le port serie. Pour plus d'information sur la connexion, veuillez vous référer au plan de connexion.
 
 *---------- Section sur le bras robot -----------*
+
 Modèle: MyCobot 280PI
 Site officiel : https://www.elephantrobotics.com/en/mycobot-pi/
 Manuel technique : https://www.elephantrobotics.com/wp-content/uploads/2021/03/myCobot-User-Mannul-EN-V20210318.pdf
 Documentation : https://docs.elephantrobotics.com/docs/gitbook-en/
 
 Ce bras robot a un RasberryPi 4 d'intégré. Ce PI est configurer avec une image ''custom'' de la compagnie Elephant Robotics.
-On peut la télécharger via ce lien: 
+On peut la télécharger via ce lien: https://www.elephantrobotics.com/en/downloads/
+Dans notre cas, nous avons l'image ubuntu 20.04 pour le MyCobot 280 PI.
 
 La communication entre les servos du bras robot et le Pi est fait via
 le port serie ttyAMA0.
@@ -21,7 +27,9 @@ le code qui est présent sur le bras robot a été programmé directement sur l'
 
 
 *-------------------------------------------------*
+
 *---    À lire pour l'acquisition d'image     ----*
+
 *-------------------------------------------------*
 
 Appreil: Jetson Nano 3450
@@ -43,9 +51,13 @@ Jetson nano est un petit ordinateur fait pour supporter de l'intelligence artifi
 - Installer OpenCV
     1 - sudo apt install python3-opencv
 - Installer MediaPipe
-    1 - 
+    1 - git clone https://github.com/google/mediapipe.git
+    2 - cd mediapipe
+    3 - python3 -m pip install .
+
 - Installer Serial
-    1 - 
+    1 - sudo pip3 install serial
+    2 - sudo pip3 install pyserial
 
 La communication série du Jetson est sur la pin UartRX sur le port: /dev/ttyS0
 
