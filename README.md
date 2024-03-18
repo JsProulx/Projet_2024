@@ -34,7 +34,9 @@ le code qui est présent sur le bras robot a été programmé directement sur l'
 *-------------------------------------------------*
 
 Appreil: Jetson Nano 3450
+
 site officiel : https://developer.nvidia.com/embedded/jetson-nano-developer-kit
+
 «Get started»: https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit
 
 Jetson nano est un micro controleur fait pour supporter de l'intelligence artificiel conçu pour traiter des résolution d'images allant jusqu'à 4k. Il est excellent dans le context de traitement d'image ce qui est un élément crucial pour le bon fonctionnement de l'activité du suiveur de main comme l'on doit traiter une image en temps réel. 
@@ -47,7 +49,7 @@ Une fois l'image prête, insérez la carte dans le Jetson et alimentez-le. Un co
 Une fois la configuration terminée, on doit modifier la date et l'heure du Jetson. Le Jetson a un RTC, mais il faut souder une batterie pour 
 s'en servir, ce que nous avons pas fait.
 
-- sudo date MMDDhhmmYYYY
+        sudo date MMDDhhmmYYYY
 
 Une fois la date bonne, branchez le Jetson a Internet via un cable Ethernet. Le Jetson n'as pas de module Wi-Fi de base. Mettez ensuite a jour les paquets et les drivers:
 
