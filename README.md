@@ -53,7 +53,7 @@ s'en servir, ce que nous avons pas fait.
 
 Une fois la date bonne, branchez le Jetson a Internet via un cable Ethernet. Le Jetson n'as pas de module Wi-Fi de base. Mettez ensuite a jour les paquets et les drivers:
 
-- sudo apt update && sudo apt upgrade
+        sudo apt update && sudo apt upgrade
 
 Le programme Python qui gère les jeux utilise les libraries OpenCV et Mediapipe pour la capture video et la détection d'une main. 
 
@@ -68,6 +68,7 @@ L'installation de ces libraries sur Jetson ne sont malheureusement pas très int
 - Ce guide est aussi très intéressant et explore plusieurs solutions: https://jetson-docs.federicolanzani.com/libraries/mediapipe/overview#mediapipe-wheels
 
 
+----- a enlever ou modifier ----
 Nous avons eu à apporter les modifications suivantes:
 
 - Installer Python 3.10:
