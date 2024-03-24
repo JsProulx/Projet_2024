@@ -37,12 +37,16 @@ Nous avons exploré deux solution pour la capture vidéo:
 - Jetson Nano 3450
   Avantages: Plus performant (il a un processeur graphique dédié). Permet d'avoir 15-20 fps
   
-  Inconvénients: Installation des libraries nécessaires (mediapipe et opencv) beaucoup plus difficile. Ça prend des versions spécifique des libraries, ce qui implique l'installation de dépendance plus difficile, et une version spécifique de pyhton (ce qui fait que le code ne peut pas être 
+  Inconvénients: Installation des libraries nécessaires (mediapipe et opencv) beaucoup plus difficile. Ça prend des versions spécifique des libraries,
+  ce qui implique l'installation de dépendance plus difficile, et une version spécifique de pyhton (ce qui fait que le code ne peut pas être 
  
 - Rasberry Pi 4
-   
+  Avantages: implentation plus facile. Le rasberry Pi est compatible avec des versions plus récente de linux, ce qui permet la compatibilité avec
+  les libraries. Tout est plus facile a appliqué.
 
-Appreil: Jetson Nano 3450
+  Inconvénients: Les performances sont limité par le hardware.
+  
+Solution pour le Jetson Nano 3450
 
 site officiel : https://developer.nvidia.com/embedded/jetson-nano-developer-kit
 
@@ -75,6 +79,8 @@ L'installation de ces libraries sur Jetson ne sont malheureusement pas très int
 - Voir également ce github (référencé dans le video) https://github.com/PINTO0309/mediapipe-bin/tree/main
 - Le video suit le guide suivant https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt
 - Ce guide est aussi très intéressant et explore plusieurs solutions: https://jetson-docs.federicolanzani.com/libraries/mediapipe/overview#mediapipe-wheels
+
+Notre solution est beaucoup basé sur le [guide]
 
 
 ----- a enlever ou modifier ----
