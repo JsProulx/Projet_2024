@@ -31,17 +31,18 @@ le code qui est présent sur le bras robot a été programmé directement sur l'
 
 ## À lire pour l'acquisition d'image 
 Nous avons exploré deux solution pour la capture vidéo: 
-- Jetson Nano 3450
-  Avantages: Plus performant (il a un processeur graphique dédié). Permet d'avoir 15-20 fps
+Jetson Nano 3450
+
+  - Avantages: Plus performant (il a un processeur graphique dédié). Permet d'avoir 15-20 fps
   
-  Inconvénients: Installation des libraries nécessaires (mediapipe et opencv) beaucoup plus difficile. Ça prend des versions spécifique des libraries,
+  - Inconvénients: Installation des libraries nécessaires (mediapipe et opencv) beaucoup plus difficile. Ça prend des versions spécifique des libraries,
   ce qui implique l'installation de dépendance plus difficile, et une version spécifique de pyhton (ce qui fait que le code ne peut pas être 
  
-- Rasberry Pi 4
-  Avantages: implentation plus facile. Le rasberry Pi est compatible avec des versions plus récente de linux, ce qui permet la compatibilité avec
+Rasberry Pi 4
+  - Avantages: implentation plus facile. Le rasberry Pi est compatible avec des versions plus récente de linux, ce qui permet la compatibilité avec
   les libraries. Tout est plus facile a appliqué.
 
-  Inconvénients: Les performances sont limité par le hardware.
+  - Inconvénients: Les performances sont limité par le hardware.
   
 ### Solution pour le Jetson Nano 3450
 
