@@ -1,24 +1,22 @@
-*------------------------------------------------*
+# À lire pour l'utilisation du bras robot 
 
-*--- À lire pour l'utilisation du bras robot ----*
 
-*------------------------------------------------*
 
 Ce projet est conçu pour le Département de Technique de Génie Électrique du Cégep de Sherbrooke. On utilise un bras robot 6 axes d'Elephant Robotics. 
 Le bras robot a un RasberryPI 4 d'intégré. Ce Pi4 contient les scripts python pour gérer le mouvement des servos moteurs du bras robot. Pour interfacer la manette et 
 le module de vision par odinateur, nous utilisons un JetSon Nano de Nvidia. Ce microcontroleur traite les données nécessaires et envoie les informations au Pi4 via le port serie. Pour plus d'information sur la connexion, veuillez vous référer au plan de connexion.
 
-*---------- Section sur le bras robot -----------*
+## Section sur le bras robot
 
 Modèle: MyCobot 280PI
-Site officiel : https://www.elephantrobotics.com/en/mycobot-pi/
+[Site officiel](https://www.elephantrobotics.com/en/mycobot-pi/)
 
-Manuel technique : https://www.elephantrobotics.com/wp-content/uploads/2021/03/myCobot-User-Mannul-EN-V20210318.pdf
+[Manuel technique](https://www.elephantrobotics.com/wp-content/uploads/2021/03/myCobot-User-Mannul-EN-V20210318.pdf)
 
-Documentation : https://docs.elephantrobotics.com/docs/gitbook-en/
+[Documentation](https://docs.elephantrobotics.com/docs/gitbook-en/)
 
 Ce bras robot a un RasberryPi 4 d'intégré. Ce PI est configurer avec une image ''custom'' de la compagnie Elephant Robotics.
-On peut la télécharger via ce lien: https://www.elephantrobotics.com/en/downloads/
+On peut la télécharger via ce [lien](https://www.elephantrobotics.com/en/downloads/)
 Dans notre cas, nous avons l'image ubuntu 20.04 pour le MyCobot 280 PI.
 
 La communication entre les servos du bras robot et le Pi est fait via
@@ -29,12 +27,7 @@ le code qui est présent sur le bras robot a été programmé directement sur l'
     - Jeu2_.py
 
 
-*-------------------------------------------------*
-
-*---    À lire pour l'acquisition d'image     ----*
-
-*-------------------------------------------------*
-
+## À lire pour l'acquisition d'image 
 Nous avons exploré deux solution pour la capture vidéo: 
 - Jetson Nano 3450
   Avantages: Plus performant (il a un processeur graphique dédié). Permet d'avoir 15-20 fps
