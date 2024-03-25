@@ -25,8 +25,8 @@ le port serie ttyAMA0.
 
 le code qui est présent sur le bras robot a été programmé directement sur l'appareil. Une copie de ce code figure dans le github du projet. Vous y trouverez deux codes nommez : 
 
-    - Jeu1_suiveur.py
-    - Jeu2_.py
+- Jeu1_suiveur.py
+- Jeu2_.py
 
 
 ## À lire pour l'acquisition d'image 
