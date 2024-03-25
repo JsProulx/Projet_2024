@@ -9,6 +9,7 @@ le module de vision par odinateur, nous utilisons un JetSon Nano de Nvidia. Ce m
 ## Section sur le bras robot
 
 Modèle: MyCobot 280PI
+
 [Site officiel](https://www.elephantrobotics.com/en/mycobot-pi/)
 
 [Manuel technique](https://www.elephantrobotics.com/wp-content/uploads/2021/03/myCobot-User-Mannul-EN-V20210318.pdf)
@@ -23,6 +24,7 @@ La communication entre les servos du bras robot et le Pi est fait via
 le port serie ttyAMA0.
 
 le code qui est présent sur le bras robot a été programmé directement sur l'appareil. Une copie de ce code figure dans le github du projet. Vous y trouverez deux codes nommez : 
+
     - Jeu1_suiveur.py
     - Jeu2_.py
 
