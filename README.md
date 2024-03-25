@@ -99,8 +99,13 @@ Cette commande ne cause pas d'erreure normalement, mais elle peut être très lo
         ./v0.8.5/numpy119x/mediapipe-0.8.5_cuda102-cp36-cp36m-linux_aarch64_numpy119x_jetsonnano_L4T32.5.1_download.sh
 
 Cette procédure fait installer mediapipe v0.8.5. Cette version est fonctionnel, mais moins optimal que certaines versions plus récentes. La version la plus récente de mediapipe compatible avec notre system est v0.8.9. C'est donc la version que j'ai installé. Le wheel d'installation est disponible dans ce [git](https://github.com/anion0278/mediapipe-jetson/tree/main/dist)
+
         git clone https://github.com/anion0278/mediapipe-jetson/tree/main/dist
         pip3 install mediapipe-0.8.9_cuda102-cp36-cp36m-linux_aarch64.whl
+
+
+Le reste de la procédure de feitgemel est normalement fonctionnelle.
+
 
 
 ----- a enlever ou modifier ----
