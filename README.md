@@ -37,7 +37,7 @@ Nous avons exploré deux solution pour la capture vidéo:
   - Avantages: Plus performant (il a un processeur graphique dédié). Permet d'avoir 15-20 fps
   
   - Inconvénients: Installation des libraries nécessaires (mediapipe et opencv) beaucoup plus difficile. Ça prend des versions spécifique des libraries,
-  ce qui implique l'installation de dépendance plus difficile, et une version spécifique de pyhton (ce qui fait que le code ne peut pas être 
+  ce qui implique l'installation de dépendance plus difficile, et une version spécifique de python. Ces versions spécifiques sont nécessaire utiliser correctement les       ressources du Jetson.
  
 **Rasberry Pi 4**
   - Avantages: implentation plus facile. Le rasberry Pi est compatible avec des versions plus récente de linux, ce qui permet la compatibilité avec
@@ -49,6 +49,7 @@ Nous avons exploré deux solution pour la capture vidéo:
 
 > [!NOTE]
 > La procédure qui suit est la à titre informatif. Pour vous éviter de la faire, nous avons fait une image .iso de notre systeme. (nom de l'image)
+> Il y a aussi certains problèmes avec cette installation. Il y a place a l'optimisation. Elle est par contre suffisante pour notre utilisation.
 
 [site officiel](https://developer.nvidia.com/embedded/jetson-nano-developer-kit)
 
@@ -108,6 +109,8 @@ Le reste de la procédure de feitgemel est normalement fonctionnelle.
 
 
 ## Solution pour le rasberry PI
+
+L'installation de
 
 ----- a enlever ou modifier ----
 Nous avons eu à apporter les modifications suivantes:
