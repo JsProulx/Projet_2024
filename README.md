@@ -34,7 +34,7 @@ Nous avons exploré deux solution pour la capture vidéo:
 
 **Jetson Nano 3450**
 
-  - Avantages: Plus performant (il a un processeur graphique dédié). Permet d'avoir 15-20 fps
+  - Avantages: Plus performant (il a un processeur graphique dédié). Permet d'avoir 10 -20 fps
   
   - Inconvénients: Installation des libraries nécessaires (mediapipe et opencv) beaucoup plus difficile. Ça prend des versions spécifique des libraries,
   ce qui implique l'installation de dépendance plus difficile, et une version spécifique de python. Ces versions spécifiques sont nécessaire utiliser correctement les       ressources du Jetson.
@@ -78,7 +78,7 @@ Le programme Python qui gère les jeux utilise les libraries OpenCV et Mediapipe
 
 L'installation de ces libraries sur Jetson ne sont malheureusement pas très intuitive. Voici les guides que nous avons suivi:
 
-- https://www.youtube.com/watch?v=ij9bIET4rCU&ab_channel=EranFeit
+- [ce video](https://www.youtube.com/watch?v=ij9bIET4rCU&ab_channel=EranFeit)
 - Voir également ce [repertoire github](https://github.com/PINTO0309/mediapipe-bin/tree/main) (référencé dans le video)
 - Le video suit ce [guide de l'utilisateur feitgemel](https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt)
 - Ce [guide](https://jetson-docs.federicolanzani.com/libraries/mediapipe/overview#mediapipe-wheels) est aussi très intéressant et explore plusieurs solutions:
@@ -110,7 +110,7 @@ Le reste de la procédure de feitgemel est normalement fonctionnelle.
 
 ## Solution pour le rasberry PI
 
-L'installation de
+L'installation des librairies est beaucoup plus simple sur Rasberry PI, car nous pouvons installer l'image qu'on veut. Nous
 
 ----- a enlever ou modifier ----
 Nous avons eu à apporter les modifications suivantes:
