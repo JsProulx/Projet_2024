@@ -12,7 +12,9 @@ le module de vision par odinateur, nous utilisons un JetSon Nano de Nvidia. Ce m
 
 Modèle: MyCobot 280PI
 Site officiel : https://www.elephantrobotics.com/en/mycobot-pi/
+
 Manuel technique : https://www.elephantrobotics.com/wp-content/uploads/2021/03/myCobot-User-Mannul-EN-V20210318.pdf
+
 Documentation : https://docs.elephantrobotics.com/docs/gitbook-en/
 
 Ce bras robot a un RasberryPi 4 d'intégré. Ce PI est configurer avec une image ''custom'' de la compagnie Elephant Robotics.
@@ -80,7 +82,25 @@ L'installation de ces libraries sur Jetson ne sont malheureusement pas très int
 - Le video suit le guide suivant https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt
 - Ce guide est aussi très intéressant et explore plusieurs solutions: https://jetson-docs.federicolanzani.com/libraries/mediapipe/overview#mediapipe-wheels
 
-Notre solution est beaucoup basé sur le [guide]
+ Pour installer les librairies, nous nous sommes principalement basé sur ce [guide](https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt) cité ci-haut.
+
+Il y a certaines commandes qui peuvent causer problème:
+
+        sudo env H5PY_SETUP_REQUIRES=0 pip3 install -U h5py==3.1.0
+        
+H5PY est une dépendance de MediaPipe essentiel pour stocker les données et faire les calculs. Il faut installer cette version spécifiquement, sinon ce n'est pas compatible
+avec notre version de python (3.6.9) et de mediapipe. Cette solution sur ce [forum](https://forums.developer.nvidia.com/t/failed-building-wheel-of-h5py/263322/5) permet de 
+faire l'installation.
+
+        sudo pip3 install opencv_contrib_python
+
+Cette commande ne cause pas d'erreure normalement, mais elle peut être très longue. Il faut être patient :)
+
+        ./v0.8.5/numpy119x/mediapipe-0.8.5_cuda102-cp36-cp36m-linux_aarch64_numpy119x_jetsonnano_L4T32.5.1_download.sh
+
+Cette procédure fait installer mediapipe v0.8.5. Cette version est fonctionnel, mais moins optimal que certaines versions plus récentes. La version la plus récente de mediapipe compatible avec notre system est v0.8.9. C'est donc la version que j'ai installé. Le wheel d'installation est disponible dans ce [git](https://github.com/anion0278/mediapipe-jetson/tree/main/dist)
+        git clone https://github.com/anion0278/mediapipe-jetson/tree/main/dist
+        pip3 install mediapipe-0.8.9_cuda102-cp36-cp36m-linux_aarch64.whl
 
 
 ----- a enlever ou modifier ----
