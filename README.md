@@ -47,6 +47,9 @@ Nous avons exploré deux solution pour la capture vidéo:
   
 ### Solution pour le Jetson Nano 3450
 
+> [!NOTE]
+> La procédure qui suit est la à titre informatif. Pour vous éviter de la faire, nous avons fait une image .iso de notre systeme. (nom de l'image)
+
 [site officiel](https://developer.nvidia.com/embedded/jetson-nano-developer-kit)
 
 [«Get started»](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit)
@@ -104,6 +107,7 @@ Cette procédure fait installer mediapipe v0.8.5. Cette version est fonctionnel,
 Le reste de la procédure de feitgemel est normalement fonctionnelle.
 
 
+## Solution pour le rasberry PI
 
 ----- a enlever ou modifier ----
 Nous avons eu à apporter les modifications suivantes:
