@@ -30,7 +30,8 @@ le code qui est présent sur le bras robot a été programmé directement sur l'
 
 
 ## À lire pour l'acquisition d'image 
-Nous avons exploré deux solution pour la capture vidéo: 
+Nous avons exploré deux solution pour la capture vidéo:
+
 Jetson Nano 3450
 
   - Avantages: Plus performant (il a un processeur graphique dédié). Permet d'avoir 15-20 fps
@@ -74,9 +75,9 @@ Le programme Python qui gère les jeux utilise les libraries OpenCV et Mediapipe
 L'installation de ces libraries sur Jetson ne sont malheureusement pas très intuitive. Voici les guides que nous avons suivi:
 
 - https://www.youtube.com/watch?v=ij9bIET4rCU&ab_channel=EranFeit
-- Voir également ce github (référencé dans le video) https://github.com/PINTO0309/mediapipe-bin/tree/main
-- Le video suit le guide suivant https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt
-- Ce guide est aussi très intéressant et explore plusieurs solutions: https://jetson-docs.federicolanzani.com/libraries/mediapipe/overview#mediapipe-wheels
+- Voir également ce [repertoire github](https://github.com/PINTO0309/mediapipe-bin/tree/main) (référencé dans le video)
+- Le video suit ce [guide de l'utilisateur feitgemel](https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt)
+- Ce [guide](https://jetson-docs.federicolanzani.com/libraries/mediapipe/overview#mediapipe-wheels) est aussi très intéressant et explore plusieurs solutions:
 
  Pour installer les librairies, nous nous sommes principalement basé sur ce [guide](https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt) cité ci-haut.
 
