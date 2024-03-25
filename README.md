@@ -23,7 +23,7 @@ Dans notre cas, nous avons l'image ubuntu 20.04 pour le MyCobot 280 PI.
 La communication entre les servos du bras robot et le Pi est fait via
 le port serie ttyAMA0.
 
-le code qui est présent sur le bras robot a été programmé directement sur l'appareil. Une copie de ce code figure dans le github du projet. Vous y trouverez deux codes nommez : 
+le code qui est présent sur le bras robot a été programmé directement sur l'appareil. Une copie de ce code figure dans le github du projet. Vous y trouverez deux codes nommé : 
 
 - Jeu1_suiveur.py
 - Jeu2_.py
@@ -43,16 +43,16 @@ Nous avons exploré deux solution pour la capture vidéo:
 
   Inconvénients: Les performances sont limité par le hardware.
   
-Solution pour le Jetson Nano 3450
+### Solution pour le Jetson Nano 3450
 
-site officiel : https://developer.nvidia.com/embedded/jetson-nano-developer-kit
+[site officiel](https://developer.nvidia.com/embedded/jetson-nano-developer-kit)
 
-«Get started»: https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit
+[«Get started»](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit)
 
 Jetson nano est un micro controleur fait pour supporter de l'intelligence artificiel conçu pour traiter des résolution d'images allant jusqu'à 4k. Il est excellent dans le context de traitement d'image ce qui est un élément crucial pour le bon fonctionnement de l'activité du suiveur de main comme l'on doit traiter une image en temps réel. 
 La première étape est de flasher une carte micro SD avec l'image officielle fournis par NVIDIA.
 
-Lien pour le téléchargement : https://developer.nvidia.com/jetson-nano-sd-card-image
+[Lien pour le téléchargement](https://developer.nvidia.com/jetson-nano-sd-card-image)
 
 Cette image utilise Ubuntu 18.04. Nous avons utiliser Balena Etcher pour flasher la carte. Il est fortement recommandé d'utilisé une carte d'au moins 64GB.
 Une fois l'image prête, insérez la carte dans le Jetson et alimentez-le. Un configuration de base doit être faite, suivez les étapes présentées à l'écran.
