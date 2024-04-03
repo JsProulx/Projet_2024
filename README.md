@@ -107,6 +107,7 @@ Cette procédure fait installer mediapipe v0.8.5. Cette version est fonctionnel,
 
 Le reste de la procédure de feitgemel est normalement fonctionnelle.
 
+La communication série du Jetson est sur la pin UartRX sur le port: /dev/ttyS0
 
 ## Solution pour le rasberry PI
 
@@ -151,8 +152,5 @@ Installer Serial pour la communication serie
     sudo pip3 install serial
     sudo pip3 install pyserial
 
-La communication série du Jetson est sur la pin UartRX sur le port: /dev/ttyS0
-
-
-
+La communication série du Rasberry PI est sur la pin UartRX sur le port: /dev/ttyS0
 
