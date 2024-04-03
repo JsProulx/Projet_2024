@@ -81,7 +81,7 @@ L'installation de ces libraries sur Jetson ne sont malheureusement pas très int
 - [ce video](https://www.youtube.com/watch?v=ij9bIET4rCU&ab_channel=EranFeit)
 - Voir également ce [repertoire github](https://github.com/PINTO0309/mediapipe-bin/tree/main) (référencé dans le video)
 - Le video suit ce [guide de l'utilisateur feitgemel](https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt)
-- Ce [guide](https://jetson-docs.federicolanzani.com/libraries/mediapipe/overview#mediapipe-wheels) est aussi très intéressant et explore plusieurs solutions:
+- Ce [guide](https://jetson-docs.federicolanzani.com/libraries/mediapipe/overview#mediapipe-wheels) est aussi très intéressant et explore plusieurs solutions
 
  Pour installer les librairies, nous nous sommes principalement basé sur ce [guide](https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt) cité ci-haut.
 
@@ -110,10 +110,11 @@ Le reste de la procédure de feitgemel est normalement fonctionnelle.
 
 ## Solution pour le rasberry PI
 
-L'installation des librairies est beaucoup plus simple sur Rasberry PI, car nous pouvons installer l'image qu'on veut. Nous
+L'installation des librairies est beaucoup plus simple sur Rasberry PI, car nous pouvons installer l'image qu'on veut. Nous avons imagé la carte SD avec Rasberry Pi Imager. Nous avons pris l'image recommandé par le logiciel (BookWorm avec Desktop). Une fois la carte SD imagé, on peut l'insérer dans le PI et l'alimenter. Une fois partie et connecté à internet, faire les commandes suivantes:
 
------ a enlever ou modifier ----
-Nous avons eu à apporter les modifications suivantes:
+    sudo apt update && sudo apt upgrade
+
+Le Rasberry PI4 est compatible avec les dernières version de Python. Nous avons installer Python :
 
 - Installer Python 3.10:
     1 - sudo apt update
