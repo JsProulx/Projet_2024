@@ -134,16 +134,22 @@ Installer Python 3.10:
   
     sudo make altinstall
     
-- Installer OpenCV
-    1 - sudo apt install python3-opencv
-- Installer MediaPipe
-    1 - git clone https://github.com/google/mediapipe.git
-    2 - cd mediapipe
-    3 - python3 -m pip install .
+Installer OpenCV:
 
-- Installer Serial
-    1 - sudo pip3 install serial
-    2 - sudo pip3 install pyserial
+    sudo apt install python3-opencv
+    
+Installer MediaPipe
+
+    git clone https://github.com/google/mediapipe.git
+    
+    cd mediapipe
+    
+    python3 -m pip install .
+
+Installer Serial pour la communication serie
+    
+    sudo pip3 install serial
+    sudo pip3 install pyserial
 
 La communication série du Jetson est sur la pin UartRX sur le port: /dev/ttyS0
 
