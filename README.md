@@ -114,17 +114,25 @@ L'installation des librairies est beaucoup plus simple sur Rasberry PI, car nous
 
     sudo apt update && sudo apt upgrade
 
-Le Rasberry PI4 est compatible avec les dernières version de Python. Nous avons installer Python :
+Le Rasberry PI4 est compatible avec les dernières version de Python. Nous avons installer Python 3.10 pour être sur de la compatibilité avec MediaPipe.
 
-- Installer Python 3.10:
-    1 - sudo apt update
-    2 - sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
-    3 - (Choisir l'emplacement d'installation) wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
-    4 - tar -xf Python-3.10.0.tgz
-    5 - cd Python-3.10.0
-    6 - ./configure --enable-optimizations
-    7 - make -j "Nombre de coeurs"
-    8 - sudo make altinstall
+Installer Python 3.10:
+
+    sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+    
+    cd /emplacement/choisi/pour/l'installation
+
+    wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
+      
+    tar -xf Python-3.10.0.tgz
+  
+    cd Python-3.10.0
+  
+    ./configure --enable-optimizations
+  
+    make -j "Nombre de coeurs"
+  
+    sudo make altinstall
     
 - Installer OpenCV
     1 - sudo apt install python3-opencv
@@ -138,7 +146,6 @@ Le Rasberry PI4 est compatible avec les dernières version de Python. Nous avons
     2 - sudo pip3 install pyserial
 
 La communication série du Jetson est sur la pin UartRX sur le port: /dev/ttyS0
-
 
 
 
