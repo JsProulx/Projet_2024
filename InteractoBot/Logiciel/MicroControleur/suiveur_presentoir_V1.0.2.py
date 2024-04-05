@@ -13,8 +13,7 @@ Les informations de positions de la main sont envoyées par communication série
 import cv2
 import mediapipe as mp
 import time
-from mediapipe.tasks.python import vision
-from mediapipe.tasks import python
+
 import serial
 
 #port_serie = serial.Serial('/dev/ttyS0', 9600)  # Initialisation de la communication série
@@ -30,6 +29,9 @@ class detectMain():
         self.mpHands = mp.solutions.hands   # Création de l'objet main
         self.hands = self.mpHands.Hands(self.mode, int(self.maxHands), int(self.detectionCon), self.trackCon)       # Initialisation de l'objet main
         self.mpDraw = mp.solutions.drawing_utils  # Création de l'objet dessin
+
+        self.last_detection_time = time.time()  # Initialisation du temps de la dernière détection
+        self.premiere_detection = True  # Initialisation de la première détection
 
     #Cette méthode prend une image en entrée et retourne l'image avec les points des mains détectées dessinés dessus   
     def trouvePointsMain(self, img, draw=True):
@@ -76,11 +78,18 @@ class detectMain():
                 return 1 , distance
         
         return 0, distance
+    def sequence_premiere_detection(self, img):
+        # Afficher un message pour demander à l'utilisateur de placer sa main dans le rectangle
+        cv2.putText(img, "Placez votre main dans l'image!", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+        #envoi de la commande nécessaire pour que le bras robot face un mouvement de va et vient
+        #on efface le message
+        #peut etre mettre un delay pour que le robot ait le temps de faire sa sequence
+        return img
 
 
 def main():
-    pTime = 0
-    cTime = 0
+    pTime = 0  # temps précédent
+    cTime = 0  # temps courant
     cap = cv2.VideoCapture(0)
     detector = detectMain()
 
@@ -90,6 +99,9 @@ def main():
     display_width = 852  # Largeur de l'écran souhaitée
     display_height = 480  # Hauteur de l'écran souhaitée
 
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, display_width)  # Largeur de l'image
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, display_height)  # Hauteur de l'image
+
    
     while True:
         success, img_noflip = cap.read()
@@ -98,11 +110,13 @@ def main():
         img, main_points = detector.trouvePointsMain(img)       # Trouver les points de la main sur img, retourne la nouvelle image avec les points de la main
         img, paume_position = detector.trouvePositionPaume(img, main_points) # Trouver la position de la paume de la main sur img, retourne la nouvelle image avec un point sur la paume
 
+
+
         #si on detecte une main
         if paume_position:
+
             # Calculer la distance entre l'index et le pouce
             distance = detector.distanceIndexPouce(img, main_points)
-
             Z_converti = 480-paume_position[1]  # Convertir la position de la paume en coordonnées cartésiennes
             text = f"Position de la main: {paume_position[0]}, {Z_converti}, Disance index/pouce : {distance[1]}" # Convertir les coordonnées en texte
             cv2.putText(img, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2, cv2.LINE_AA) # Dessiner le texte sur l'image
@@ -110,8 +124,8 @@ def main():
             #port_serie.write(stringEnvoi.encode())    
             
             print(stringEnvoi)
-
-
+            
+        
         #pour le calcul du fps
         cTime = time.time()
         fps = 1 / (cTime - pTime)
