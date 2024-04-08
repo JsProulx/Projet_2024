@@ -99,8 +99,8 @@ def main():
     display_width = 852  # Largeur de l'écran souhaitée
     display_height = 480  # Hauteur de l'écran souhaitée
 
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, display_width)  # Largeur de l'image
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, display_height)  # Hauteur de l'image
+    cap.set(3, display_width)  # Largeur de l'image
+    cap.set(4, display_height)  # Hauteur de l'image
 
    
     while True:
