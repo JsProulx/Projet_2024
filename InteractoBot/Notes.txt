@@ -4,5 +4,4 @@
 #min_Y = -140
 #max_Y = 140
 
-
 #Le port Utiliser pour le USB to ttl est /dev/ttyUSB0
