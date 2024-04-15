@@ -3,8 +3,9 @@
 
 
 Ce projet est conçu pour le Département de Technique de Génie Électrique du Cégep de Sherbrooke. On utilise un bras robot 6 axes d'Elephant Robotics. 
-Le bras robot a un RasberryPI 4 d'intégré. Ce Pi4 contient les scripts python pour gérer le mouvement des servos moteurs du bras robot. Pour interfacer la manette et 
-le module de vision par odinateur, nous utilisons un JetSon Nano de Nvidia. Ce microcontroleur traite les données nécessaires et envoie les informations au Pi4 via le port serie. Pour plus d'information sur la connexion, veuillez vous référer au plan de connexion.
+Le bras robot a un RasberryPI 4 d'intégré. Ce Pi4 contient les scripts python pour gérer le mouvement des servos moteurs du bras robot. Pour interfacer le module de vision par odinateur, 
+nous utilisons un JetSon Nano de Nvidia. Ce microcontroleur traite les données nécessaires et envoie les informations au Pi4 via le port serie. Pour plus d'information sur la connexion, 
+veuillez vous référer au plan de connexion.
 
 ## Section sur le bras robot
 
@@ -18,37 +19,37 @@ Modèle: MyCobot 280PI
 
 Ce bras robot a un RasberryPi 4 d'intégré. Ce PI est configurer avec une image ''custom'' de la compagnie Elephant Robotics.
 On peut la télécharger via ce [lien](https://www.elephantrobotics.com/en/downloads/)
-Dans notre cas, nous avons l'image ubuntu 20.04 pour le MyCobot 280 PI.
+Dans notre cas, l'image fournie est basé sur ubuntu 20.04 pour le MyCobot 280 PI.
 
 La communication entre les servos du bras robot et le Pi est fait via
 le port serie ttyAMA0.
 
-le code qui est présent sur le bras robot a été programmé directement sur l'appareil. Une copie de ce code figure dans le github du projet. Vous y trouverez deux codes nommé : 
+le code présent sur le bras robot a été programmé directement sur l'appareil. Une copie de ce code figure dans le github du projet. Vous y trouverez deux codes nommés : 
 
 - Jeu1_suiveur.py
 - Jeu2_.py
 
 
 ## À lire pour l'acquisition d'image 
-Nous avons exploré deux solution pour la capture vidéo:
+Nous avons exploré deux solutions pour la capture vidéo:
 
 **Jetson Nano 3450**
 
-  - Avantages: Plus performant (il a un processeur graphique dédié). Permet d'avoir 10 -20 fps
+  - Avantages: Plus performant (il a un processeur graphique dédié et un radiateur). Permet d'avoir 10 -20 fps
   
   - Inconvénients: Installation des libraries nécessaires (mediapipe et opencv) beaucoup plus difficile. Ça prend des versions spécifique des libraries,
-  ce qui implique l'installation de dépendance plus difficile, et une version spécifique de python. Ces versions spécifiques sont nécessaire utiliser correctement les       ressources du Jetson.
+  ce qui rend l'installation des dépendances plus difficile, et une version spécifique de python. Ces versions spécifiques sont nécessaires utiliser correctement les ressources du Jetson.
  
 **Rasberry Pi 4**
   - Avantages: implentation plus facile. Le rasberry Pi est compatible avec des versions plus récente de linux, ce qui permet la compatibilité avec
   les libraries. Tout est plus facile a appliqué.
 
-  - Inconvénients: Les performances sont limité par le hardware.
+  - Inconvénients: Les performances sont limité par les composantes physique.
   
 ### Solution pour le Jetson Nano 3450
 
 > [!NOTE]
-> La procédure qui suit est la à titre informatif. Pour vous éviter de la faire, nous avons fait une image .iso de notre systeme. (nom de l'image)
+> La procédure qui suit est là à titre informative. Pour vous éviter de la faire, nous avons fait une image .iso de notre systeme. (nom de l'image)
 > Il y a aussi certains problèmes avec cette installation. Il y a place a l'optimisation. Elle est par contre suffisante pour notre utilisation.
 
 [site officiel](https://developer.nvidia.com/embedded/jetson-nano-developer-kit)
@@ -65,31 +66,31 @@ Une fois l'image prête, insérez la carte dans le Jetson et alimentez-le. Un co
 Une fois la configuration terminée, on doit modifier la date et l'heure du Jetson. Le Jetson a un RTC, mais il faut souder une batterie pour 
 s'en servir, ce que nous avons pas fait.
 
-        sudo date MMDDhhmmYYYY
+        sudo date MMDDhhmmYYYY.ss  #MoisJourHeureMinutesAnnées.Secondes (Il n'est pas crucial que les secondes soient exactes)
 
-Une fois la date bonne, branchez le Jetson a Internet via un cable Ethernet. Le Jetson n'as pas de module Wi-Fi de base. Mettez ensuite a jour les paquets et les drivers:
+Une fois la date configuré, branchez le Jetson à Internet via un cable Ethernet. Le Jetson n'a pas de module Wi-Fi de base. Mettez ensuite à jour les paquets et les drivers:
 
         sudo apt update && sudo apt upgrade
 
-Le programme Python qui gère les jeux utilise les libraries OpenCV et Mediapipe pour la capture video et la détection d'une main. 
+Le programme Python qui gère les jeux utilise les libraries OpenCV et Mediapipe pour la capture video et la détection d'une main.
 
  - https://opencv.org/
  - https://developers.google.com/mediapipe
 
-L'installation de ces libraries sur Jetson ne sont malheureusement pas très intuitive. Voici les guides que nous avons suivi:
+L'installation de ces libraries sur Jetson n'est malheureusement pas très intuitive. Voici les guides que nous avons suivi:
 
 - [ce video](https://www.youtube.com/watch?v=ij9bIET4rCU&ab_channel=EranFeit)
 - Voir également ce [repertoire github](https://github.com/PINTO0309/mediapipe-bin/tree/main) (référencé dans le video)
 - Le video suit ce [guide de l'utilisateur feitgemel](https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt)
 - Ce [guide](https://jetson-docs.federicolanzani.com/libraries/mediapipe/overview#mediapipe-wheels) est aussi très intéressant et explore plusieurs solutions
 
- Pour installer les librairies, nous nous sommes principalement basé sur ce [guide](https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt) cité ci-haut.
+Pour installer les librairies, nous nous sommes principalement basé sur ce [guide](https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt) cité ci-haut.
 
 Il y a certaines commandes qui peuvent causer problème:
 
         sudo env H5PY_SETUP_REQUIRES=0 pip3 install -U h5py==3.1.0
         
-H5PY est une dépendance de MediaPipe essentiel pour stocker les données et faire les calculs. Il faut installer cette version spécifiquement, sinon ce n'est pas compatible
+H5PY est une dépendance de MediaPipe essentiel pour stocker les données et faire les calculs nécessaires. Il faut installer cette version spécifiquement, sinon ce n'est pas compatible
 avec notre version de python (3.6.9) et de mediapipe. Cette solution sur ce [forum](https://forums.developer.nvidia.com/t/failed-building-wheel-of-h5py/263322/5) permet de 
 faire l'installation.
 
@@ -105,9 +106,11 @@ Cette procédure fait installer mediapipe v0.8.5. Cette version est fonctionnel,
         pip3 install mediapipe-0.8.9_cuda102-cp36-cp36m-linux_aarch64.whl
 
 
-Le reste de la procédure de feitgemel est normalement fonctionnelle.
+Le reste de la procédure de feitgemel est, normalement, fonctionnelle.
 
-La communication série du Jetson est sur la pin UartRX sur le port: /dev/ttyS0
+La communication série du Jetson est sur la pin UartTX sur le port: /dev/ttyS0
+
+Nous n'avons pas réussi à créer une version 
 
 ## Solution pour le rasberry PI
 
