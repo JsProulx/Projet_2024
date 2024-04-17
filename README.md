@@ -119,7 +119,10 @@ Nous avons configurer le .bashrc à l'aide de la commande :
         cd
         sudo nano .bashrc
 
-Le contenu suivant a été ajouter à la fin 
+Le contenu suivant a été ajouter à la fin du fichier:
+
+        echo "phijes" | sudo -S chmod 666 /dev/ttyS0
+        /usr/bin/python3 /home/phijes/Documents/suiveur_presentoir_V1_0_2.py
 
 ## Solution pour le rasberry PI
 
