@@ -16,9 +16,9 @@ import cv2
 import mediapipe as mp
 import time
 
-import serial
+#import serial
 
-port_serie = serial.Serial('/dev/ttyS0', 9600)  # Initialisation de la communication série
+#port_serie = serial.Serial('/dev/ttyS0', 9600)  # Initialisation de la communication série
 
 class detectMain():
     #Initialisation de la classe
@@ -60,10 +60,37 @@ class detectMain():
             cv2.circle(img, paume_position, 10, (255, 0, 255), cv2.FILLED)
         
         return img, paume_position
-    #Cette methode prend une image et les points de la main en entree et calcul la distance enntre l'index et le pouce
-    #retourne 1 si la distance est inferieur a 50 sinon 0
+    #Cette methode prend une image et les points de la main en entree et calcul la distance enntre l'index et le pouce, relative
+    #a la distance entre la jointure 1 du ptit doigt et la paume 
     def distanceIndexPouce(self, img, point_main):
-        distance = 0
+        if point_main:
+
+            img_hauteur, img_largeur, _ = img.shape         # Récupère la hauteur et la largeur de l'image
+            
+            #creation des 4 objet landmark pour les points de la main
+            j1_tidoit_landmark =point_main.landmark[self.mpHands.HandLandmark.PINKY_MCP] #jointure 1 du ptit doigt
+            base_paume_landmark = point_main.landmark[self.mpHands.HandLandmark.WRIST] #base de la paume
+            top_index_landmark = point_main.landmark[self.mpHands.HandLandmark.INDEX_FINGER_TIP]    #objet de position de l'index. A 2 propriétés x et y
+            top_pouce_landmark = point_main.landmark[self.mpHands.HandLandmark.THUMB_TIP]   # objet de position du pouce. A 2 propriétés x et y
+
+            #calcul de la position des points en pixel dans l'image (format (x,y))
+            j1_tidoit_position = (int(j1_tidoit_landmark.x * img_largeur), int(j1_tidoit_landmark.y * img_hauteur))     
+            base_paume_position = (int(base_paume_landmark.x * img_largeur), int(base_paume_landmark.y * img_hauteur))  
+            top_index_position = (int(top_index_landmark.x * img_largeur), int(top_index_landmark.y * img_hauteur))     
+            top_pouce_position = (int(top_pouce_landmark.x * img_largeur), int(top_pouce_landmark.y * img_hauteur))     
+
+            #calcul de la distance entre les points en pixel
+            distance_ti_paume = int(((j1_tidoit_position[0] - base_paume_position[0])**2 + (j1_tidoit_position[1] - base_paume_position[1])**2)**0.5)     ## Calcul (en pixel) de la distance entre la jointure 1 du ptit doigt et la aume avec pythagore: racine carrée de (x2-x1)² + (y2-y1)²
+            distance_ind_pouce = int(((top_index_position[0] - top_pouce_position[0])**2 + (top_index_position[1] - top_pouce_position[1])**2)**0.5)  # Calcul (en pixel) de la distance entre l'index et le pouce avec pythagore: racine carrée de (x2-x1)² + (y2-y1)²
+
+            #si la distance entre l'index et le pouce est inferieur a la motié de la distance entre la jointure 1 du ptit doigt et la paume, on ferme la main
+            if distance_ind_pouce < distance_ti_paume/2:
+                return 1, distance_ind_pouce
+        return 0, distance_ind_pouce
+
+        #vielle version
+        """
+         distance = 0
         if point_main:
             #Extrait la position de la paume de la main
             index_landmark = point_main.landmark[self.mpHands.HandLandmark.INDEX_FINGER_TIP]    #objet de position de l'index. A 2 propriétés x et y
@@ -77,6 +104,11 @@ class detectMain():
                 return 1 , distance
         
         return 0, distance
+        """
+    def rotation_main (self, img, point_main):
+        if point_main:
+            img_hauteur, img_largeur, _ = img.shape                     # Récupère la hauteur et la largeur de l'image
+            
 
 
 def main():
@@ -107,11 +139,12 @@ def main():
             # Calculer la distance entre l'index et le pouce
             distance = detector.distanceIndexPouce(img, main_points)
             Z_converti = 480-paume_position[1]  # Convertir la position de la paume en coordonnées cartésiennes
-            text = f"Position de la main: {paume_position[0]}, {Z_converti}, Disance index/pouce : {distance[1]}" # Convertir les coordonnées en texte
+            text = f"Position de la main: {paume_position[0]}, {Z_converti}" # Convertir les coordonnées en texte
             cv2.putText(img, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2, cv2.LINE_AA) # Dessiner le texte sur l'image
-            stringEnvoi = str(paume_position[0]) + "," + str(Z_converti)+","+ str(distance[0]) + "\n"  # Créer une chaîne de caractères pour envoyer les coordonnées de la paume
-            port_serie.write(stringEnvoi.encode())    
-            print(stringEnvoi)
+            print(distance)
+            #stringEnvoi = str(paume_position[0]) + "," + str(Z_converti)+","+ str(distance[0]) + "\n"  # Créer une chaîne de caractères pour envoyer les coordonnées de la paume
+            #port_serie.write(stringEnvoi.encode())    
+            #print(stringEnvoi)
 
 
 
