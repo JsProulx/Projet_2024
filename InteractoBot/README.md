@@ -1,5 +1,5 @@
-                ----- Architecture du git ------
+# Architecture Github
 
-Logiciel --> contient tous les logiciels que nous avons fait pour le projet (version actuelle, version antérieure et backup)
+Répertoire «Logiciel»: contient tous les logiciels que nous avons fait pour le projet (version actuelle, version antérieure, backup, tests)
 
-Prep_automne_2023_backup --> contient tous ce que nous avons fait au courant du cour de préparation au projet 
+Répertoire «Prep_automne_2023_backup»: contient tous ce que nous avons fait au courant du cour de préparation au projet 
