@@ -9,12 +9,17 @@ série avec le raspi4 dans le bras robot. J'ai fait une classe detectMain pour f
 de la détection de la main. On peut utiliser cette classe pour d'autres versions du programme.
 
 Les informations de positions de la main sont envoyées par communication série au bras robot.
+
+
+ce code est utiliser pour tester le programme sur un ordinateur personnel, donc pas d'envoie sur 
+le bras robot.
 """
 #!/usr/bin/python3
 
 import cv2
 import mediapipe as mp
 import time
+import math
 
 #import serial
 
@@ -88,27 +93,39 @@ class detectMain():
                 return 1, distance_ind_pouce
         return 0, distance_ind_pouce
 
-        #vielle version
-        """
-         distance = 0
-        if point_main:
-            #Extrait la position de la paume de la main
-            index_landmark = point_main.landmark[self.mpHands.HandLandmark.INDEX_FINGER_TIP]    #objet de position de l'index. A 2 propriétés x et y
-            pouce_landmark = point_main.landmark[self.mpHands.HandLandmark.THUMB_TIP]   # objet de position du pouce. A 2 propriétés x et y
-            img_hauteur, img_largeur, _ = img.shape                     # Récupère la hauteur et la largeur de l'image
-            index_position = (int(index_landmark.x * img_largeur), int(index_landmark.y * img_hauteur))     # Position de l'index en par rapport à l'image
-            pouce_position = (int(pouce_landmark.x * img_largeur), int(pouce_landmark.y * img_hauteur))      # Position du pouce en par rapport à l'image
-            distance = int(((index_position[0] - pouce_position[0])**2 + (index_position[1] - pouce_position[1])**2)**0.5)  # Calcul (en pixel) de la distance entre l'index et le pouce avec pythagore: racine carrée de (x2-x1)² + (y2-y1)²
-            cv2.line(img, index_position, pouce_position, (255, 0, 255), 2)  # Dessine une ligne entre l'index et le pouce
-            if distance < 90:
-                return 1 , distance
-        
-        return 0, distance
-        """
     def rotation_main (self, img, point_main):
         if point_main:
             img_hauteur, img_largeur, _ = img.shape                     # Récupère la hauteur et la largeur de l'image
             
+            direction = False  #direction de la rotation, True pour droite, False pour gauche
+            angle = 0
+
+            #on fait des landmark pour le poignet et le bout du majeur
+            base_paume_landmark = point_main.landmark[self.mpHands.HandLandmark.WRIST] #base de la paume
+            jointure2_landmark = point_main.landmark[self.mpHands.HandLandmark.MIDDLE_FINGER_MCP]    #objet de position du majeur. A 2 propriétés x et y
+
+            #calcul de la position des points en pixel dans l'image (format (x,y))
+            base_paume_position = (int(base_paume_landmark.x * img_largeur), int(base_paume_landmark.y * img_hauteur))
+            jointure2_position = (int(jointure2_landmark.x * img_largeur), int(jointure2_landmark.y * img_hauteur))
+
+            """#on décide de quel bord on tourne
+            if jointure2_position[0] > base_paume_position[0]:
+                direction = True
+            else:
+                direction = False"""
+            
+            #calcul des deltas
+            delta_x = base_paume_position[0] - jointure2_position[0]
+            delta_y = base_paume_position[1] - jointure2_position[1]
+
+            #calcul de l'angle
+            angle = int(math.degrees(math.atan2(delta_y, delta_x)))
+            
+            #si on veut mirroir l'angle
+            angle = 180 - angle
+
+            #on retourne l'angle selon la direction
+            return angle
 
 
 def main():
@@ -138,13 +155,18 @@ def main():
         if paume_position:
             # Calculer la distance entre l'index et le pouce
             distance = detector.distanceIndexPouce(img, main_points)
+            
+            #calcul de l'angle de rotation
+            angle = detector.rotation_main(img, main_points)
+
             Z_converti = 480-paume_position[1]  # Convertir la position de la paume en coordonnées cartésiennes
             text = f"Position de la main: {paume_position[0]}, {Z_converti}" # Convertir les coordonnées en texte
             cv2.putText(img, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2, cv2.LINE_AA) # Dessiner le texte sur l'image
-            print(distance)
+            #print(distance)
             #stringEnvoi = str(paume_position[0]) + "," + str(Z_converti)+","+ str(distance[0]) + "\n"  # Créer une chaîne de caractères pour envoyer les coordonnées de la paume
             #port_serie.write(stringEnvoi.encode())    
             #print(stringEnvoi)
+            print(angle)
 
 
 
