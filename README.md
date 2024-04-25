@@ -113,7 +113,7 @@ La communication série du Jetson est sur la pin UartTX sur le port: /dev/ttyS0
 Nous n'avons pas réussi à créer une configuration du Jetson qui lui permet de démarrer le logiciel d'acquisition d'image. Nous avons essayer les méthodes proposés
 sur la communauté d'Nvidia mais ces méthodes n'ont pas fonctionnés (créer un service ou utiliser «Startup Applications»). 
 
-En revanche, nous avons configuré qu'il ne faut qu'exécuter un terminal afin que le programme se démarre via le terminal qui vient d'ouvrir.
+En revanche, nous l'avons configuré de sorte à ce que le programme se démarre lorsque le profile .bashrc est chargé. Donc, par exemple, dès qu'un terminal est ouvert!
 Nous avons configurer le .bashrc à l'aide de la commande :
 
         cd

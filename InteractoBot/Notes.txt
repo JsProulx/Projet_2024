@@ -1,7 +1,0 @@
-#Constantes des limites de la plage
-#min_Z = 185
-#max_Z =330
-#min_Y = -140
-#max_Y = 140
-
-#Le port Utiliser pour le USB to ttl est /dev/ttyUSB0
