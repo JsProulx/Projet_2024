@@ -263,7 +263,6 @@ def mouvement(recep_Z,recep_Y,shared_Read_flag,lock,Grabber_state,Grabber_twist)
         
         #compteur pour tomber en veille apres un certain temps
         elif compteur_inactivite < 200: 
-            if compteur_inactivite == 0 or compteur_inactivite == 1:
             compteur_inactivite = compteur_inactivite + 1
             #print(compteur_inactivite)  #Lecture pour tester laugementation de la valeure de compteur dinactivite
 
