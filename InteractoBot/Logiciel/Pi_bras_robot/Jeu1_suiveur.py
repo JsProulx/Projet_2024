@@ -71,7 +71,6 @@ def read_serial(recep_Z,recep_Y,read_flag,lock,Grabber_state,Grabber_twist):
 
 def idle_act0():
     
-    mc.set_gripper_state(1,100)
     #Section toc toc
     mc.send_coords([140,-69,269,-81,53,-85],90,0)   #Point référenciel
     time.sleep(1)
@@ -102,6 +101,7 @@ def idle_act0():
     mc.send_coords([140,-69,269,-81,53,-85],90,0)   #Point référenciel
 
 def idle_act1():
+
     mc.send_coords([18,0,300,-90,45,90],90,0)
     sense=1      
     flag = False    #pour sortir de la while
@@ -162,6 +162,9 @@ def idle_act1():
                 flag = True
 
 def dodo_attente():
+
+    mc.set_gripper_state(1,100)
+    
     #Variables pour la position de relachement des servos du robot
     pause_x = -14.3
     pause_y = -20.2
