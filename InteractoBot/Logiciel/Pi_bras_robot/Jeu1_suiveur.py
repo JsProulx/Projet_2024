@@ -196,7 +196,7 @@ def mouvement(recep_Z,recep_Y,shared_Read_flag,lock,Grabber_state,Grabber_twist)
             Distance_preset_X = 140   
 
             #Valeure par defaut de la rotation de la pince
-            ry = 0
+            ry = -45
             
             #Valeure par defaut des angle de la "tete" du robot
             rx_m = -81
@@ -230,12 +230,12 @@ def mouvement(recep_Z,recep_Y,shared_Read_flag,lock,Grabber_state,Grabber_twist)
             #Travail de la variable de rotation de la pince afin qu'elle respecte certaines limites
             if Grabber_twist.value > 5 or Grabber_twist.value < -5:
                 ry = Grabber_twist.value
-                if ry >= 90:
-                    ry = 90
-                elif ry <= -90:
-                    ry = -90
+                if ry >= 135:
+                    ry = 135
+                elif ry <= -45:
+                    ry = -45
             else:
-                ry = 0
+                ry = -45
 
             #Si les valeures de mouvement sont dans ces limites, ne fait rien sinon bouge
             if dep_Y > -115 and dep_Y < 115 and dep_Z < 210 and dep_Z >= 185 or temp_recep_Y ==0 and temp_recep_Z == 0 or dep_Z <= 200:
