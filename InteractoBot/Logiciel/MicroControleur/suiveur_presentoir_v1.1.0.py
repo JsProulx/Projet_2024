@@ -9,10 +9,6 @@ série avec le raspi4 dans le bras robot. J'ai fait une classe detectMain pour f
 de la détection de la main. On peut utiliser cette classe pour d'autres versions du programme.
 
 Les informations de positions de la main sont envoyées par communication série au bras robot.
-
-
-ce code est utiliser pour tester le programme sur un ordinateur personnel, donc pas d'envoie sur 
-le bras robot.
 """
 #!/usr/bin/python3
 
@@ -21,9 +17,9 @@ import mediapipe as mp
 import time
 import math
 
-#import serial
+import serial
 
-#port_serie = serial.Serial('/dev/ttyS0', 9600)  # Initialisation de la communication série
+port_serie = serial.Serial('/dev/ttyS0', 9600)  # Initialisation de la communication série
 
 class detectMain():
     #Initialisation de la classe
@@ -119,6 +115,12 @@ class detectMain():
             #si on veut mirroir l'angle
             angle = 180 - angle
 
+            #on ajuste l'angle pour qu'il soit entre 0 et 180
+            if angle > 270:
+                angle = 0
+            elif angle > 180 and angle < 270:
+                angle = 180
+            
             #on retourne l'angle selon la direction
             return angle
 
@@ -157,12 +159,11 @@ def main():
             Z_converti = 480-paume_position[1]  # Convertir la position de la paume en coordonnées cartésiennes
             text = f"Position de la main: {paume_position[0]}, {Z_converti}" # Convertir les coordonnées en texte
             cv2.putText(img, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2, cv2.LINE_AA) # Dessiner le texte sur l'image
-            #print(distance)
-            #stringEnvoi = str(paume_position[0]) + "," + str(Z_converti)+","+ str(distance[0]) + "," + str(angle) + "\n"  # Créer une chaîne de caractères pour envoyer les coordonnées de la paume
-            #port_serie.write(stringEnvoi.encode())    
+            stringEnvoi = str(paume_position[0]) + "," + str(Z_converti)+","+ str(distance[0]) + "," + str(angle) + "\n"  # Créer une chaîne de caractères pour envoyer les coordonnées de la paume
+            port_serie.write(stringEnvoi.encode())    
             #print(stringEnvoi)
-            print(angle)
-
+            #print(angle)
+            #print(distance)
 
 
         #pour le calcul du fps
