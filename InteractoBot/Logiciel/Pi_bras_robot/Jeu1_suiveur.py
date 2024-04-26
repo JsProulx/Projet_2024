@@ -70,7 +70,8 @@ def read_serial(recep_Z,recep_Y,read_flag,lock,Grabber_state,Grabber_twist):
 #faire bouger le robot
 
 def idle_act0():
-
+    
+    mc.set_gripper_state(1,100)
     #Section toc toc
     mc.send_coords([140,-69,269,-81,53,-85],90,0)   #Point référenciel
     time.sleep(1)
@@ -108,7 +109,6 @@ def idle_act1():
     r=255
     g=0
     b=255
-    #TODO : mettre la vitesse de deplacvement plus vite et faire la boucle des lumiere independante
     while flag == False:
         if i < 90 and sense==1:
             mc.send_angles([90,0,i,0,90,45],80)
@@ -264,7 +264,6 @@ def mouvement(recep_Z,recep_Y,shared_Read_flag,lock,Grabber_state,Grabber_twist)
         #compteur pour tomber en veille apres un certain temps
         elif compteur_inactivite < 200: 
             if compteur_inactivite == 0 or compteur_inactivite == 1:
-                mc.set_gripper_state(1,100)
             compteur_inactivite = compteur_inactivite + 1
             #print(compteur_inactivite)  #Lecture pour tester laugementation de la valeure de compteur dinactivite
 
@@ -272,11 +271,11 @@ def mouvement(recep_Z,recep_Y,shared_Read_flag,lock,Grabber_state,Grabber_twist)
             dodo_attente()
             compteur_inactivite = 300
 
-        elif compteur_inactivite >= 300 and compteur_inactivite < 3300: #Normalement 6300
+        elif compteur_inactivite >= 300 and compteur_inactivite < 3300: #Normalement 3300
             compteur_inactivite = compteur_inactivite + 1
             #print(compteur_inactivite)
 
-        elif compteur_inactivite == 3300:   #Normalement 6300
+        elif compteur_inactivite == 3300:   #Normalement 3300
             #print("test")
             selection_activite = random.randint(0,1)
             if selection_activite == 0:
