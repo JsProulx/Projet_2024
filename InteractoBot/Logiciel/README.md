@@ -18,4 +18,4 @@ Ce dossier contient les versions de codes qui ont été implémenté dans le mic
     Toutes les versions antérieures de nos solutions.
     
 ~\Tests\
-    Contient des petits programmes qui nous a été utile pour tester des fonctionnalité isolé et des périphériques
+    Contient des petits programmes qui nous a été utile pour tester des fonctionnalités isolé et des périphériques
