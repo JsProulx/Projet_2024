@@ -272,11 +272,11 @@ def mouvement(recep_Z,recep_Y,shared_Read_flag,lock,Grabber_state,Grabber_twist)
             dodo_attente()
             compteur_inactivite = 300
 
-        elif compteur_inactivite >= 300 and compteur_inactivite < 500: #Normalement 6300
+        elif compteur_inactivite >= 300 and compteur_inactivite < 3300: #Normalement 6300
             compteur_inactivite = compteur_inactivite + 1
             #print(compteur_inactivite)
 
-        elif compteur_inactivite == 500:   #Normalement 6300
+        elif compteur_inactivite == 3300:   #Normalement 6300
             #print("test")
             selection_activite = random.randint(0,1)
             if selection_activite == 0:
