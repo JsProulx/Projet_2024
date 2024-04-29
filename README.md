@@ -56,8 +56,7 @@ Nous avons exploré deux solutions pour la capture vidéo:
 
 [«Get started»](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit)
 
-Jetson nano est un micro controleur fait pour supporter de l'intelligence artificiel conçu pour traiter des résolutions d'images allant jusqu'à 4k. Il est excellent dans le context de traitement d'image ce qui est un élément crucial pour le bon fonctionnement de l'activité du suiveur de main comme l'on doit traiter une image en temps réel. 
-La première étape est de flasher une carte micro SD avec l'image officielle fournis par NVIDIA.
+Jetson nano est un microcontrôleur fait pour supporter de l'intelligence artificiel conçu pour traiter des résolutions d'images allant jusqu'à 4k. Il est excellent dans le contexte de traitement d'image ce qui est un élément crucial pour le bon fonctionnement de l'activité du suiveur de main comme l'on doit traiter une image en temps réel. La première étape est de «flasher» une carte micro SD avec l'image officielle fournis par NVIDIA. 
 
 [Lien pour le téléchargement](https://developer.nvidia.com/jetson-nano-sd-card-image)
 
