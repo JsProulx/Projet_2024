@@ -46,7 +46,7 @@ Nous avons exploré deux solutions pour la capture vidéo:
 
   - Inconvénients: Les performances sont limité par les composantes physique.
   
-### Solution pour le Jetson Nano 3450
+### Solution pour le Jetson Nano P3450
 
 > [!NOTE]
 > La procédure qui suit est là à titre informative. Pour vous éviter de la faire, nous avons fait une image .iso de notre systeme. (nom de l'image)
@@ -56,7 +56,7 @@ Nous avons exploré deux solutions pour la capture vidéo:
 
 [«Get started»](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit)
 
-Jetson nano est un micro controleur fait pour supporter de l'intelligence artificiel conçu pour traiter des résolution d'images allant jusqu'à 4k. Il est excellent dans le context de traitement d'image ce qui est un élément crucial pour le bon fonctionnement de l'activité du suiveur de main comme l'on doit traiter une image en temps réel. 
+Jetson nano est un micro controleur fait pour supporter de l'intelligence artificiel conçu pour traiter des résolutions d'images allant jusqu'à 4k. Il est excellent dans le context de traitement d'image ce qui est un élément crucial pour le bon fonctionnement de l'activité du suiveur de main comme l'on doit traiter une image en temps réel. 
 La première étape est de flasher une carte micro SD avec l'image officielle fournis par NVIDIA.
 
 [Lien pour le téléchargement](https://developer.nvidia.com/jetson-nano-sd-card-image)
