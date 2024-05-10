@@ -35,6 +35,8 @@ Nous avons exploré deux solutions pour la capture vidéo:
   
   - Inconvénients: Installation des libraries nécessaires (mediapipe et opencv) beaucoup plus difficile. Ça prend des versions spécifique des libraries,
   ce qui rend l'installation des dépendances plus difficile, et une version spécifique de python. Ces versions spécifiques sont nécessaires utiliser correctement les ressources du Jetson.
+
+  - ***Le Jetson Nano est la solution que nous avons prévilégié. C'est ce microcontroleur que nous utilisons***
  
 **Rasberry Pi 4**
   - Avantages: implentation plus facile. Le rasberry Pi est compatible avec des versions plus récente de linux, ce qui permet la compatibilité avec
