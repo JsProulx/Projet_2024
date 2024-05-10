@@ -83,6 +83,8 @@ L'installation de ces libraries sur Jetson n'est malheureusement pas très intui
 
 Pour installer les librairies, nous nous sommes principalement basé sur ce [guide](https://github.com/feitgemel/Jetson-Nano-Python/blob/master/Install-MediaPipe/How%20to%20Install%20MediaPipe%20on%20jetson-nano%202022.txt) cité ci-haut.
 
+#### Problème potentiel
+
 Il y a certaines commandes qui peuvent causer problème:
 
         sudo env H5PY_SETUP_REQUIRES=0 pip3 install -U h5py==3.1.0
