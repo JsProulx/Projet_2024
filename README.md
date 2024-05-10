@@ -24,11 +24,7 @@ Dans notre cas, l'image fournie est basé sur ubuntu 20.04 pour le MyCobot 280 P
 La communication entre les servos du bras robot et le Pi est fait via
 le port serie ttyAMA0.
 
-le code présent sur le bras robot a été programmé directement sur l'appareil. Une copie de ce code figure dans le github du projet. Vous y trouverez deux codes nommés : 
-
-- Jeu1_suiveur.py
-- Jeu2_.py
-
+le code présent sur le bras robot a été programmé directement sur l'appareil. Une copie de ce code figure dans le github du projet dans la section du bras robot.
 
 ## À lire pour l'acquisition d'image 
 Nous avons exploré deux solutions pour la capture vidéo:
