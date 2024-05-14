@@ -95,7 +95,7 @@ faire l'installation.
 
         sudo pip3 install opencv_contrib_python
 
-Cette commande ne cause pas d'erreure normalement, mais elle peut être très longue. Il faut être patient :)
+Cette commande ne cause pas d'erreure normalement, mais elle peut être très longue puisqu'elle permet d'installer OpenCV. Il faut être patient :)
 
         ./v0.8.5/numpy119x/mediapipe-0.8.5_cuda102-cp36-cp36m-linux_aarch64_numpy119x_jetsonnano_L4T32.5.1_download.sh
 
