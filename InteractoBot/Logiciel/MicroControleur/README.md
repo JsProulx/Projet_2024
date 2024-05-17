@@ -1,5 +1,7 @@
 # MicroControleur
-Ce répertoire contient les versions du programme d'acquisition d'image contenu sur le Jetson Nano et compatible avec le Raspberry pi 4 (si les librairies nécessaire sont préalablement installées).
+Ce répertoire contient le programme d'acquisition d'image contenu sur le Jetson Nano et compatible avec le Raspberry pi 4 (si les librairies nécessaire sont préalablement installées).
+
+Les Versions précédentes du projet ont été déplacé dans le dossier «microcontroleur_arch» à des fins d'épurer les sections de code actifs
 
 Ce code utilise OpenCV pour la capture vidéo ainsi que MediaPipe pour la détection de mains.
 
