@@ -1,4 +1,4 @@
-# microordinateur
+# micro-ordinateur
 Ce répertoire contient le programme d'acquisition d'image contenu sur le Jetson Nano et compatible avec le Raspberry pi 4 (si les librairies nécessaires sont préalablement installées).
 
 Les Versions précédentes du projet ont été déplacées dans le dossier «microcontroleur_arch» à des fins d'épurer les sections de code actif
@@ -21,7 +21,7 @@ Nous avons exploré deux solutions pour la capture vidéo:
   - Inconvénients: Installation des librairies nécessaires (mediapipe et opencv) beaucoup plus difficile. Ça prend des versions spécifiques des librairies,
   ce qui rend l'installation des dépendances plus difficile, et une version spécifique de python. Ces versions spécifiques sont nécessaires à utiliser correctement les ressources du Jetson.
 
-  - ***Le Jetson Nano est la solution que nous avons privilégiée. C'est ce microordinateur que nous utilisons***
+  - ***Le Jetson Nano est la solution que nous avons privilégiée. C'est ce micro-ordinateur que nous utilisons***
  
 **Rasberry Pi 4**
   - Avantages: implantation plus facile. Le Rasberry Pi est compatible avec des versions plus récentes de Linux, ce qui permet la compatibilité avec
@@ -39,7 +39,7 @@ Nous avons exploré deux solutions pour la capture vidéo:
 
 [«Get started»](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit)
 
-Jetson Nano est un microordinateur fait pour supporter de l'intelligence artificielle conçu pour traiter des résolutions d'images allant jusqu'au 4k. Il est excellent dans le contexte de traitement d'image, ce qui est un élément crucial pour le bon fonctionnement de l'activité du suiveur de main comme l'on doit traiter une image en temps réel. La première étape est de «flasher» une carte micro SD avec l'image officielle fournis par NVIDIA. 
+Jetson Nano est un micro-ordinateur fait pour supporter de l'intelligence artificielle conçu pour traiter des résolutions d'images allant jusqu'au 4k. Il est excellent dans le contexte de traitement d'image, ce qui est un élément crucial pour le bon fonctionnement de l'activité du suiveur de main comme l'on doit traiter une image en temps réel. La première étape est de «flasher» une carte micro SD avec l'image officielle fournis par NVIDIA. 
 
 [Lien pour le téléchargement](https://developer.nvidia.com/jetson-nano-sd-card-image)
 
