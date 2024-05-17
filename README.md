@@ -10,10 +10,11 @@ veuillez vous référer au plan de connexion.
 
 *Voici l'architecture de dossier de notre projet accompagné d'une brève description!*
 
-- [Logiciel](InteractoBot/Logiciel/Archive)
-- [Archive](InteractoBot/Logiciel/Archive)
-- [Archive](InteractoBot/Logiciel/Archive)
-- [Archive](InteractoBot/Logiciel/Archive)
+- [Logiciel](InteractoBot/Logiciel)
+  - [Archive](InteractoBot/Logiciel/Archive)
+  - [MicroControleur](InteractoBot/Logiciel/MicroControleur)
+  - [Pi_bras_robot](InteractoBot/Logiciel/Pi_bras_robot)
+  - [Sources](InteractoBot/Logiciel/Sources)
 
 ### Microcontroleur
 Ce dossier contient les versions de codes qui ont été implémenté dans le microcontroleur qui gère l'acquisition visuel et la détection de la main. Notre solution finale utilise le Jetson Nano, mais les scripts devraient tous être fonctionnel sur rasberry PI, en assumant que les libraries sont installées correctement.
