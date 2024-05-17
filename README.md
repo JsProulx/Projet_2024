@@ -11,11 +11,11 @@ veuillez vous référer au plan de connexion.
 *Voici l'architecture de dossier de notre projet accompagné d'une brève description!*
 
 - [Logiciel](InteractoBot/Logiciel)
-  - [Archive](InteractoBot/Logiciel/Archive)
-    - [Archive du bras robot](InteractoBot/Logiciel/Archive/Bras_Robot_Arch)
+  - [Archives](InteractoBot/Logiciel/Archive)
+    - [Bras robot](InteractoBot/Logiciel/Archive/Bras_Robot_Arch)
     - [Fichiers du cours préparatoire au projet](InteractoBot/Logiciel/Archive/Prep_automne_2023_backup)
-    - [Archive du bras microcontroleur](InteractoBot/Logiciel/Archive/microcontroleur_arch)
-    - [Archive des codes de tests](InteractoBot/Logiciel/Archive/tests)
+    - [Microcontroleur](InteractoBot/Logiciel/Archive/microcontroleur_arch)
+    - [Codes de tests](InteractoBot/Logiciel/Archive/tests)
   - [MicroControleur](InteractoBot/Logiciel/MicroControleur)
   - [Pi_bras_robot](InteractoBot/Logiciel/Pi_bras_robot)
   - [Sources](InteractoBot/Logiciel/Sources)
