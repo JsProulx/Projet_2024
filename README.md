@@ -32,7 +32,3 @@ Ce dossier contien la version du code qui est implémenté dans le Rasberry PI 4
 ### Sources
 On retrouve ici les fichiers autres qui ont été utilisé qui ne sont pas du code.
 
-### Archive
-Ce fichier sert d'archive pour les codes précédent, les tests ainsi que les fichier du cours préparatoire à ce projet.
-
-
