@@ -21,15 +21,13 @@ veuillez vous référer au plan de connexion.
   - [Sources](InteractoBot/Logiciel/Sources)
 
 ### Archive
-Ce documents contient plusieurs éléments:
-  - Fichiers de tests pour le bras robot et l'acquisition d'image
-  - 
+Nous avons eu a faire l'archivage de nos solutions de tests, nos versions de code précédents celle utilisée ainsi que les fichiers de notre cours préparatoire à ce projet. L'objectif derrière cet archivage est d'épurer l'architecture de notre Github et mieux catégoriser nos fichiers.
 
 ### Microcontroleur
-Ce dossier contient les versions de codes qui ont été implémenté dans le microcontroleur qui gère l'acquisition visuel et la détection de la main. Notre solution finale utilise le Jetson Nano, mais les scripts devraient tous être fonctionnel sur rasberry PI, en assumant que les libraries sont installées correctement.
+Ce dossier contient notre solution finale utilise le Jetson Nano, le script devrai être aussi fonctionnel sur le rasberry PI, en assumant que les libraries sont installées correctement.
 
 ### PI_bras_robot
-Ce dossier contien lea version du code qui est implémenté dans le Rasberry PI 4 embarqué dans le MyCobot 280PI.
+Ce dossier contien la version du code qui est implémenté dans le Rasberry PI 4 embarqué dans le MyCobot 280PI.
 
 ### Sources
 On retrouve ici les fichiers autres qui ont été utilisé qui ne sont pas du code.
