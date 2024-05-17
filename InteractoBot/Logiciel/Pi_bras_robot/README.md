@@ -1,10 +1,10 @@
 # Pi_bras_robot
 
-Le code qui se retrouve dans le rasberry pi du bras robot est main.py. Il se trouve dans le répertoire /home/Desktop/script_demar
+Le code qui se retrouve dans le Raspberry PI du bras robot est main.py. Il se trouve dans le répertoire /home/Desktop/script_demar
 
 ## Section sur le bras robot
 
-Modèle: MyCobot 280PI
+Modèle: MyCobot 280 Pi
 
 [Site officiel](https://www.elephantrobotics.com/en/mycobot-pi/)
 
@@ -12,11 +12,11 @@ Modèle: MyCobot 280PI
 
 [Documentation](https://docs.elephantrobotics.com/docs/gitbook-en/)
 
-Ce bras robot a un RasberryPi 4 d'intégré. Ce PI est configurer avec une image ''custom'' de la compagnie Elephant Robotics.
+Ce bras robot a un RasberryPi 4 d'intégré. Ce PI est configuré avec une image ''custom'' de la compagnie Elephant Robotics.
 On peut la télécharger via ce [lien](https://www.elephantrobotics.com/en/downloads/)
-Dans notre cas, l'image fournie est basé sur ubuntu 20.04 pour le MyCobot 280 PI.
+Dans notre cas, l'image fournie est basée sur ubuntu 20.04 pour le MyCobot 280 PI.
 
-La communication entre les servos du bras robot et le Pi est fait via
-le port serie ttyAMA0.
+La communication entre les servos du bras robot et le Pi est faite via
+le port série ttyAMA0.
 
-le code présent sur le bras robot a été programmé directement sur l'appareil. Une copie de ce code figure dans le github du projet dans la section du bras robot.
+Le code présent sur le bras robot a été programmé directement sur l'appareil. Une copie de ce code figure dans le GitHub du projet dans la section du bras robot.
