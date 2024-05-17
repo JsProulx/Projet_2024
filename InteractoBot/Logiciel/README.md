@@ -9,10 +9,9 @@ Ce dossier contient les versions de codes qui ont été implémenté dans le mic
 Ce dossier contien lea version du code qui est implémenté dans le Rasberry PI 4 embarqué dans le MyCobot 280PI.
 
 ### Sources
-On retrouve ici les fichiers autres qui ont été utilisé qui ne sont pas du code. On y a aussi logé les liens utiles vers de la documentation 
+On retrouve ici les fichiers autres qui ont été utilisé qui ne sont pas du code.
 
-### Backups
-Toutes les versions antérieures de nos solutions.
+### Archive
+Ce fichier sert d'archive pour les codes précédent, les tests ainsi que les fichier du cours préparatoire à ce projet.
 
-### Tests
-Contient des petits programmes qui nous a été utile pour tester des fonctionnalités isolé et des périphériques
+
