@@ -12,9 +12,18 @@ veuillez vous référer au plan de connexion.
 
 - [Logiciel](InteractoBot/Logiciel)
   - [Archive](InteractoBot/Logiciel/Archive)
+    - [Archive du bras robot](InteractoBot/Logiciel/Archive/Bras_Robot_Arch)
+    - [Fichiers du cours préparatoire au projet](InteractoBot/Logiciel/Archive/Prep_automne_2023_backup)
+    - [Archive du bras microcontroleur](InteractoBot/Logiciel/Archive/MicroControleur_Arch)
+    - [Archive des codes de tests](InteractoBot/Logiciel/Archive/Tests)
   - [MicroControleur](InteractoBot/Logiciel/MicroControleur)
   - [Pi_bras_robot](InteractoBot/Logiciel/Pi_bras_robot)
   - [Sources](InteractoBot/Logiciel/Sources)
+
+### Archive
+Ce documents contient plusieurs éléments:
+  - Fichiers de tests pour le bras robot et l'acquisition d'image
+  - 
 
 ### Microcontroleur
 Ce dossier contient les versions de codes qui ont été implémenté dans le microcontroleur qui gère l'acquisition visuel et la détection de la main. Notre solution finale utilise le Jetson Nano, mais les scripts devraient tous être fonctionnel sur rasberry PI, en assumant que les libraries sont installées correctement.
