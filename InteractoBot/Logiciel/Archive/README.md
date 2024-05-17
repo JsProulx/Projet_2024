@@ -9,4 +9,4 @@ Contient les versions anterieurs et les copies de secours du code du bras robot 
 Contient les fihcier de code de notre solution de préprojet. Prendre note que le contenu de ce dossier n'est que le prototype initiale du projet et que le projet a énormément changer depuis. Il est par contre intéressant de ce référer à ce code pour comprendre le fonctionnement de base du bras robot et voir comment faire bouger les bras robots.
 
 ## microcontroleur_arch
-Contient les solutions tests 
+Contient les solutions antérieurs de notre code actuel du Jetson Nano
