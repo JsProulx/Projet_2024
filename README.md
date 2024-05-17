@@ -1,8 +1,8 @@
 
 # Un peu de contexte
-Ce projet est conçu pour le Département de Technique de Génie Électrique du Cégep de Sherbrooke. On utilise un bras robot 6 axes d'Elephant Robotics. 
-Le bras robot a un RasberryPI 4 d'intégré. Ce Pi4 contient les scripts python pour gérer le mouvement des servos moteurs du bras robot. Pour interfacer le module de vision par odinateur, 
-nous utilisons un JetSon Nano de Nvidia. Ce microcontroleur traite les données nécessaires et envoie les informations au Pi4 via le port serie. Pour plus d'information sur la connexion, 
+Ce projet est conçu pour le Département de génie électrique du Cégep de Sherbrooke. On utilise un bras robot 6 axes d'Elephant Robotics. 
+Le bras robot a un RasberryPI 4 d'intégré. Ce Pi4 contient les scripts python pour gérer le mouvement des servomoteurs du bras robot. Pour interfacer le module de vision par ordinateur, 
+nous utilisons un JetSon Nano de Nvidia. Ce microordinateur traite les données nécessaires et envoie les informations au Pi4 par le port série. Pour plus d'information sur la connexion, 
 veuillez vous référer au plan de connexion.
 
 
@@ -21,14 +21,14 @@ veuillez vous référer au plan de connexion.
   - [Sources](InteractoBot/Logiciel/Sources)
 
 ### Archive
-Nous avons eu a faire l'archivage de nos solutions de tests, nos versions de code précédents celle utilisée ainsi que les fichiers de notre cours préparatoire à ce projet. L'objectif derrière cet archivage est d'épurer l'architecture de notre Github et mieux catégoriser nos fichiers.
+Nous avons eu à faire l'archivage de nos solutions de tests, nos versions de code précédentes ainsi que les fichiers de notre cours préparatoire à ce projet. L'objectif derrière cet archivage est d'épurer l'architecture de notre Github et mieux catégoriser nos fichiers.
 
-### Microcontroleur
-Ce dossier contient notre solution finale utilise le Jetson Nano, le script devrai être aussi fonctionnel sur le rasberry PI, en assumant que les libraries sont installées correctement.
+### Microordinateur
+Ce dossier contient notre solution finale, utilise le Jetson Nano, le script devrait être aussi fonctionnel sur le Rasberry PI, en assumant que les libraires sont installées correctement.
 
 ### PI_bras_robot
-Ce dossier contien la version du code qui est implémenté dans le Rasberry PI 4 embarqué dans le MyCobot 280PI.
+Ce dossier contient la version du code qui est implémenté dans le Rasberry PI 4 embarqué dans le MyCobot 280 Pi.
 
 ### Sources
-On retrouve ici les fichiers autres qui ont été utilisé qui ne sont pas du code.
+On retrouve ici les fichiers autres qui ont été utilisés et qui ne sont pas du code.
 
